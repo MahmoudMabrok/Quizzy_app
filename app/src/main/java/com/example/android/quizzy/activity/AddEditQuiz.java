@@ -317,8 +317,8 @@ public class AddEditQuiz extends AppCompatActivity implements onQuestionAdd, Tim
 
 
     private void setHourMintInView() {
-        quizzHours.setText(String.valueOf(hours) + "  Hours");
-        quizzMin.setText(String.valueOf(minuts + "  Minuts"));
+        quizzHours.setText(String.valueOf(hours) + "H");
+        quizzMin.setText(String.valueOf(minuts + "M"));
     }
 
     @OnClick(R.id.btnSetTime)

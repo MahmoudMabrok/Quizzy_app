@@ -84,6 +84,7 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
     }
 
     private void loadState() {
+        showRv(View.GONE);
         setSpin(View.VISIBLE);
         setTextView(View.GONE);
 
@@ -94,11 +95,10 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
     }
 
     private void setSpin(int visible) {
-
+        spinKit.setVisibility(visible);
     }
 
     private void retriveQuizzList(String teacherID) {
-        //show("aaa " + teacherID);
         dataRepo.getTeacherQuizz(teacherID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -114,15 +114,16 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
                     }
                 }
                 if (rvQuizListStudent != null) {
-                }
-
-                if (quizList.size() > 0 && completedList != null) {
-                    adapter.setList(quizList, completedList);
-                } else {
-                    if (rvQuizListStudent != null) {
-                        show("NO Data");
+                    setSpin(View.GONE);
+                    if (quizList.size() > 0 && completedList != null) {
+                        adapter.setList(quizList, completedList);
+                        foundDataState();
+                    } else {
+                        notFounddataState();
                     }
                 }
+
+
             }
 
             @Override
@@ -132,6 +133,21 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
         });
 
 
+    }
+
+    private void notFounddataState() {
+        setTextView(View.VISIBLE);
+        showRv(View.GONE);
+    }
+
+    private void foundDataState() {
+        setTextView(View.GONE);
+        showRv(View.VISIBLE);
+
+    }
+
+    private void showRv(int visible) {
+        rvQuizListStudent.setVisibility(visible);
     }
 
     private void retriveCompletedList(String studentUUID) {
