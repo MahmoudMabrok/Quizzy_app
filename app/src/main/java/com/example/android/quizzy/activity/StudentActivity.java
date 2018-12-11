@@ -62,10 +62,10 @@ public class StudentActivity extends AppCompatActivity
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-        checkLoginState(); // used to check state of curent user
-
-        studentID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Log.d(TAG, "onCreate: " + studentID);
+      //  checkLoginState(); // used to check state of curent user
+      //  studentID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        studentID = "9lHyq4mnSaTd1cURH5v5jGm52Mw1";
+       // Log.d(TAG, "onCreate: " + studentID);
         Intent intent = getIntent();
         studentName = intent.getStringExtra(Constants.STUDENT_NAME_KEY);
         teacherUUID = intent.getStringExtra(Constants.TEACHER_TELEPHONE_NUMBER_KEY);
@@ -117,6 +117,7 @@ public class StudentActivity extends AppCompatActivity
         transition.setCustomAnimations(R.anim.slide_up, 0);
         student_quiz_list teacher = new student_quiz_list();
         Bundle bundle = new Bundle();
+        bundle.putString(Constants.STUDENT_UUID , studentID);
         bundle.putString(Constants.STUDENT_NAME, studentName);
         bundle.putString(Constants.STUDENT_Teacher_uuid, teacherUUID);
         teacher.setArguments(bundle);

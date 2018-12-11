@@ -7,7 +7,8 @@
     android:padding="@dimen/default16_margin"
     tools:context=".fragment.QuizzListTeacher">
 
-    <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+    <com.github.ybq.android.spinkit.SpinKitView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/spin_kit"
         style="@style/SpinKitView.Large.Circle"
         android:layout_width="wrap_content"

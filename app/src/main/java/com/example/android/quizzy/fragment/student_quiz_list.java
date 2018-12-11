@@ -9,22 +9,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.quizzy.R;
 import com.example.android.quizzy.activity.QuizzQuestion;
 import com.example.android.quizzy.adapter.QuizeListStudentAdapter;
 import com.example.android.quizzy.api.DataRepo;
-import com.example.android.quizzy.api.FirebaseDataSource;
 import com.example.android.quizzy.interfaces.OnQuizzClick;
 import com.example.android.quizzy.model.Quiz;
 import com.example.android.quizzy.util.Constants;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -44,8 +40,11 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
     Unbinder unbinder;
     DataRepo dataRepo = new DataRepo();
     QuizeListStudentAdapter adapter;
-    @BindView(R.id.pbLoadingquizz)
-    ProgressBar pbLoadingquizz;
+    @BindView(R.id.spin_kit)
+    com.github.ybq.android.spinkit.SpinKitView spinKit;
+    @BindView(R.id.tv_no_data)
+    TextView tvNoData;
+
 
     private List<Quiz> completedList = new ArrayList<>();
     private List<Quiz> quizList = new ArrayList<>();
@@ -61,10 +60,9 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            studentUUID = getArguments().getString(Constants.STUDENT_UUID);
             teacherID = getArguments().getString(Constants.STUDENT_Teacher_uuid);
-            //  show("t_id " + teacherID);
             studentName = getArguments().getString(Constants.STUDENT_NAME);
-            //    show("s_name " + studentName);
         } else {
             show("error");
         }
@@ -77,15 +75,26 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_student_quiz_list, container, false);
         unbinder = ButterKnife.bind(this, view);
-        studentUUID = dataRepo.getUUID();
-      /*  Log.d(TAG, "onCreateView: uuid " + studentUUID);
-        Log.d(TAG, "id " + studentUUID + " teacher " + teacherID);
-       */
+        loadState();
         initRv();
         retriveCompletedList(studentUUID);
         retriveQuizzList(teacherID);
 
         return view;
+    }
+
+    private void loadState() {
+        setSpin(View.VISIBLE);
+        setTextView(View.GONE);
+
+    }
+
+    private void setTextView(int gone) {
+        tvNoData.setVisibility(gone);
+    }
+
+    private void setSpin(int visible) {
+
     }
 
     private void retriveQuizzList(String teacherID) {
@@ -105,7 +114,6 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
                     }
                 }
                 if (rvQuizListStudent != null) {
-                    pbLoadingquizz.setVisibility(View.GONE);
                 }
 
                 if (quizList.size() > 0 && completedList != null) {
@@ -168,7 +176,6 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
         intent.putExtra(Constants.STUDENT_UUID, studentUUID);
         intent.putExtra(Constants.Quizz_id, quiz.getKey());
         if (quiz.getQuestionList().get(0).getStudentAnswer() != null) {
-            show("Completed ");
             intent.putExtra("s", true);
         }
         intent.putExtra(Constants.STUDENT_NAME, studentName);
@@ -184,4 +191,5 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
     private void show(String name) {
         Toast.makeText(getContext(), name, Toast.LENGTH_SHORT).show();
     }
+
 }

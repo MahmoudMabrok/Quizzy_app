@@ -11,12 +11,22 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ProgressBar
-            android:id="@+id/pbLoadingquizz"
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.Large.Circle"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/tv_no_data"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:pointerIcon="crosshair"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:text="@string/no_data_found1"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvQuizListStudent"
