@@ -62,9 +62,9 @@ public class StudentActivity extends AppCompatActivity
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-      //  checkLoginState(); // used to check state of curent user
-      //  studentID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        studentID = "9lHyq4mnSaTd1cURH5v5jGm52Mw1";
+        checkLoginState(); // used to check state of curent user
+       studentID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+      //  studentID = "9lHyq4mnSaTd1cURH5v5jGm52Mw1";
        // Log.d(TAG, "onCreate: " + studentID);
         Intent intent = getIntent();
         studentName = intent.getStringExtra(Constants.STUDENT_NAME_KEY);

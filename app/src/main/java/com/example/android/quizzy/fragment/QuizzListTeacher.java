@@ -71,7 +71,6 @@ public class QuizzListTeacher extends Fragment implements OnQuizzClick {
         View view = inflater.inflate(R.layout.fragment_quizz_list_teacher, container, false);
         unbinder = ButterKnife.bind(this, view);
         teacherKey = getArguments().getString(Constants.TEACHERS_KEY);
-        teacherKey = "0114919427";
         initRv();
 
         return view;

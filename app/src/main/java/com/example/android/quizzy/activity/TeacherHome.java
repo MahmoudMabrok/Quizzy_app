@@ -61,8 +61,9 @@ public class TeacherHome extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_sign_out_teacher) {
             FirebaseAuth.getInstance().signOut();
+            Toast.makeText(this, "sign out", Toast.LENGTH_LONG).show();
             getPreferences(MODE_PRIVATE).edit().clear().apply();
             openMainActivity();
         }
@@ -78,7 +79,8 @@ public class TeacherHome extends AppCompatActivity
         setContentView(R.layout.activity_teacher_home);
         ButterKnife.bind(this);
 
-        key = getIntent().getStringExtra(Constants.TEACHER_TELEPHONE_NUMBER_KEY);
+        key = getIntent().getStringExtra(Constants.TELEPHONE_NUMBER_KEY);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

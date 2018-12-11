@@ -29,7 +29,7 @@
         <activity
             android:screenOrientation="portrait"
             android:name=".activity.TeacherHome"
-            android:label="@string/title_activity_teacher_home"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
@@ -40,6 +40,7 @@
         <activity
             android:screenOrientation="portrait"
             android:name=".activity.StudentActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize" />
 
         <activity

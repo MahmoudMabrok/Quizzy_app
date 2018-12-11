@@ -105,23 +105,24 @@ public class LoginApiImpl implements LoginApi {
         return Single.create(new SingleOnSubscribe<User>() {
             @Override
             public void subscribe(final SingleEmitter<User> emitter) {
-                teachersReference.addValueEventListener(new ValueEventListener() {
+                teachersReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         final Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
                         DataSnapshot snapshot;
+
                         while(iterator.hasNext()) {
                             snapshot = iterator.next();
                             Teacher teacher = snapshot.getValue(Teacher.class);
                             if(teacher != null){
-
                                 if(teacher.getId().contentEquals(id)) {
                                     Log.d(TAG, "Found user as teacher");
                                     emitter.onSuccess(teacher);
+                                    break;
                                 }
                                 else {
                                     DatabaseReference studentsReference = FirebaseDatabase.getInstance().getReference().child(Constants.USERS_KEY).child(Constants.TEACHERS_KEY).child(teacher.getTelephoneNumber()).child(Constants.STUDENTS_KEY);
-                                    studentsReference.addValueEventListener(new ValueEventListener() {
+                                    studentsReference.addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(DataSnapshot dataSnapshot) {
                                             if(dataSnapshot.hasChild(id)) {
