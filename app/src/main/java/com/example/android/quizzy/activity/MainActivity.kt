@@ -17,31 +17,30 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //check if user logged or still needs
-        if (FirebaseAuth.getInstance().currentUser == null) {
-            //check sdk
-            if (android.os.Build.VERSION.SDK_INT < 19) {
-                val intent = Intent(applicationContext, IntroActivity::class.java)
-                startActivity(intent)
-            } else {
-                val intent = Intent(applicationContext, WalkThroughActivty::class.java)
-                startActivity(intent)
-            }
-        } else {
+        if(FirebaseAuth.getInstance().currentUser == null){
+            val intent = Intent(applicationContext, WalkThroughActivty::class.java)
+            startActivity(intent)
+        }
+        else {
             var gotTeacherNumber: String?
             var gotStudentName: String?
 
             //check if shared preferences has values
             val sharedPref = getPreferences(Context.MODE_PRIVATE)
-            if (sharedPref.contains(Constants.TELEPHONE_NUMBER_KEY)) { //teacher logged before
+            if(sharedPref.contains(Constants.TELEPHONE_NUMBER_KEY)){ //teacher logged before
                 gotTeacherNumber = sharedPref.getString(Constants.TELEPHONE_NUMBER_KEY, null)
                 //Navigate to Teacher activity
                 moveToTeacherActivity(gotTeacherNumber)
-            } else if (sharedPref.contains(Constants.TEACHER_TELEPHONE_NUMBER_KEY)) { //student logged before
+            }
+
+            else if(sharedPref.contains(Constants.TEACHER_TELEPHONE_NUMBER_KEY)){ //student logged before
                 gotTeacherNumber = sharedPref.getString(Constants.TEACHER_TELEPHONE_NUMBER_KEY, null)
                 gotStudentName = sharedPref.getString(Constants.STUDENT_NAME_KEY, null)
                 //Navigate to Student activity
                 moveToStudentActivity(gotTeacherNumber, gotStudentName)
-            } else {
+            }
+
+            else{
                 //Check getting number from login/register
                 if (intent.extras.containsKey(Constants.TELEPHONE_NUMBER_KEY)) { //Teacher logged
                     //isTeacher = true
@@ -66,18 +65,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun moveToTeacherActivity(telephoneNumber: String) {
+    private fun moveToTeacherActivity(telephoneNumber : String){
         val intent = Intent(this, TeacherHome::class.java)
         intent.putExtra(Constants.TELEPHONE_NUMBER_KEY, telephoneNumber)
         startActivity(intent)
-        finish()
     }
 
-    private fun moveToStudentActivity(teacherTelephoneNumber: String, studentName: String) {
+    private fun moveToStudentActivity(teacherTelephoneNumber : String, studentName : String){
         val intent = Intent(this, StudentActivity::class.java)
         intent.putExtra(Constants.TEACHER_TELEPHONE_NUMBER_KEY, teacherTelephoneNumber)
         intent.putExtra(Constants.STUDENT_NAME_KEY, studentName)
         startActivity(intent)
-        finish()
     }
 }
