@@ -15,11 +15,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Iterator;
+
 import durdinapps.rxfirebase2.RxFirebaseAuth;
 import durdinapps.rxfirebase2.RxFirebaseDatabase;
 import io.reactivex.Completable;
-import io.reactivex.CompletableEmitter;
-import io.reactivex.CompletableOnSubscribe;
 import io.reactivex.Maybe;
 import io.reactivex.Single;
 import io.reactivex.SingleEmitter;
@@ -39,11 +39,11 @@ public class LoginApiImpl implements LoginApi {
     @Override
     public Completable registerInFirebaseDatabase(User user) {
 
-        if (user instanceof Teacher) {
+        if(user instanceof Teacher){
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(Constants.USERS_KEY).child(Constants.TEACHERS_KEY).child(((Teacher) user).getTelephoneNumber());
             return RxFirebaseDatabase.setValue(reference, user);
-        } else if (user instanceof Student) {
-            FirebaseDatabase.getInstance().getReference().child(Constants.USERS_KEY).child(Constants.STUDENTS_KEY).push();
+        }
+        else if(user instanceof Student){
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(Constants.USERS_KEY).child(Constants.TEACHERS_KEY).child(((Student) user).getTeacherTelephoneNumber()).child(Constants.STUDENTS_KEY).child(user.getId());
             return RxFirebaseDatabase.setValue(reference, user);
         }
@@ -74,9 +74,10 @@ public class LoginApiImpl implements LoginApi {
                 teachersReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild(teacherTelephoneNumber)) {
+                        if(dataSnapshot.hasChild(teacherTelephoneNumber)){
                             emitter.onSuccess(true);
-                        } else {
+                        }
+                        else {
                             emitter.onSuccess(false);
                         }
                     }
@@ -93,13 +94,12 @@ public class LoginApiImpl implements LoginApi {
 
     /**
      * given a user's id, it return from database either Teacher object or Student object
-     *
      * @param id the id of the teacher or student
      * @return
      */
     @Override
-    public Single<User> getUser(final String id) {
-
+    public Single<User> getUser(final String id){
+        Log.d(TAG, "getUser executes");
         final DatabaseReference teachersReference = FirebaseDatabase.getInstance().getReference().child(Constants.USERS_KEY).child(Constants.TEACHERS_KEY);
 
         return Single.create(new SingleOnSubscribe<User>() {
@@ -108,28 +108,40 @@ public class LoginApiImpl implements LoginApi {
                 teachersReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        final Iterator<DataSnapshot> iterator = dataSnapshot.getChildren().iterator();
+                        DataSnapshot snapshot;
+                        while(iterator.hasNext()) {
+                            snapshot = iterator.next();
                             Teacher teacher = snapshot.getValue(Teacher.class);
-                            if (teacher.getId().contentEquals(id)) {
-                                Log.d(TAG, "Found user as teacher");
-                                emitter.onSuccess(teacher);
-                            } else {
-                                DatabaseReference studentsReference = FirebaseDatabase.getInstance().getReference().child(Constants.USERS_KEY).child(Constants.TEACHERS_KEY).child(teacher.getTelephoneNumber()).child(Constants.STUDENTS_KEY);
-                                studentsReference.addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(DataSnapshot dataSnapshot) {
-                                        if (dataSnapshot.hasChild(id)) {
-                                            Student student = dataSnapshot.child(id).getValue(Student.class);
-                                            Log.d(TAG, "Found user as student");
-                                            emitter.onSuccess(student);
-                                        }
-                                    }
+                            if(teacher != null){
+                                if(teacher.getId().contentEquals(id)) {
+                                    Log.d(TAG, "Found user as teacher");
+                                    emitter.onSuccess(teacher);
+                                }
+                                else {
+                                    DatabaseReference studentsReference = FirebaseDatabase.getInstance().getReference().child(Constants.USERS_KEY).child(Constants.TEACHERS_KEY).child(teacher.getTelephoneNumber()).child(Constants.STUDENTS_KEY);
+                                    studentsReference.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            if(dataSnapshot.hasChild(id)) {
+                                                Student student = dataSnapshot.child(id).getValue(Student.class);
+                                                Log.d(TAG, "Found user as student");
+                                                emitter.onSuccess(student);
+                                            }
 
-                                    @Override
-                                    public void onCancelled(DatabaseError databaseError) {
-                                        emitter.onError(new Throwable(databaseError.getMessage()));
-                                    }
-                                });
+                                            //if it is the last teacher and no emit caused disposing occurred
+                                            if(!iterator.hasNext() && !emitter.isDisposed()){
+                                                Log.d(TAG, "Did not find user and sent error");
+                                                emitter.onError(new Throwable(Constants.NO_ACCOUNT));
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+                                            emitter.onError(new Throwable(databaseError.getMessage()));
+                                        }
+                                    });
+                                }
                             }
                         }
                     }
