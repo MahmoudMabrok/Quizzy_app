@@ -14,6 +14,7 @@ public interface Constants {
     String TEACHERS_KEY = "teachers";
     String STUDENTS_KEY = "students";
 
+    public static final String ID_KEY = "id";
     String INPUTS_KEY = "inputs";
     String EMAIL_KEY = "email";
     String PASSWORD_KEY = "password";
