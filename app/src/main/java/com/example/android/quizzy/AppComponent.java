@@ -1,6 +1,7 @@
 package com.example.android.quizzy;
 
 import com.example.android.quizzy.fragment.LoginFragment;
+import com.example.android.quizzy.fragment.RegisterFragment;
 import com.example.android.quizzy.fragment.RegisterStudentFragment;
 import com.example.android.quizzy.fragment.RegisterTeacherFragment;
 
@@ -13,9 +14,8 @@ import dagger.Component;
 public interface AppComponent {
 
     void inject(LoginFragment loginFragment);
-
+    void inject(RegisterFragment registerFragment);
     void inject(RegisterStudentFragment registerStudentFragment);
-
     void inject(RegisterTeacherFragment registerTeacherFragment);
 
 }

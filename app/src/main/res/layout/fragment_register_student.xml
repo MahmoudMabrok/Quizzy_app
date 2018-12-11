@@ -2,64 +2,93 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center_vertical"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_gravity="center_vertical">
 
-    <LinearLayout style="@style/RegisterFields">
+    <LinearLayout
+        style="@style/RegisterFields">
 
-        <EditText
-            android:id="@+id/register_student_first_name_edit_text"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/first_name" />
+            android:layout_weight="1">
+            <EditText
+                android:id="@+id/register_student_first_name_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/first_name"/>
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/register_student_last_name_edit_text"
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/last_name" />
+            android:layout_weight="1">
+            <EditText
+                android:id="@+id/register_student_last_name_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/last_name" />
+        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/register_student_teacher_telephone_number_edit_text"
-        style="@style/RegisterFields"
-        android:hint="@string/teacher_telephone_number"
-        android:inputType="number" />
 
-    <EditText
-        android:id="@+id/register_student_academic_year_edit_text"
-        style="@style/RegisterFields"
-        android:hint="@string/academic_year" />
+    <android.support.design.widget.TextInputLayout
+        style="@style/RegisterFields">
+        <EditText
+            android:id="@+id/register_student_teacher_telephone_number_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/teacher_telephone_number" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/register_student_city_edit_text"
-        style="@style/RegisterFields"
-        android:hint="@string/city" />
+
+    <android.support.design.widget.TextInputLayout
+        style="@style/RegisterFields">
+        <EditText
+            android:id="@+id/register_student_academic_year_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/academic_year" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        style="@style/RegisterFields">
+        <EditText
+            android:id="@+id/register_student_city_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/city" />
+    </android.support.design.widget.TextInputLayout>
+
 
     <TextView
         android:id="@+id/register_student_error_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default16_margin"
+        android:visibility="gone"
         android:gravity="center_horizontal"
-        android:textColor="@color/red"
-        android:visibility="gone" />
+        android:background="@color/red" />
 
     <ProgressBar
         android:id="@+id/register_student_loading_progress_bar"
-        android:layout_width="@dimen/progress_bar_dimens"
-        android:layout_height="@dimen/progress_bar_dimens"
-        android:layout_gravity="center_horizontal"
-        android:visibility="gone" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateDrawable="@drawable/progress_icon"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal" />
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/register_student_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/register"
         android:layout_margin="@dimen/default8_margin"
-        android:text="@string/register" />
+        android:background="@color/colorAccent"
+        android:textColor="@color/white" />
 
 </LinearLayout>

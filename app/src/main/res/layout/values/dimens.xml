@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="progress_bar_dimens">50dp</dimen>
+    <dimen name="default16_margin">16dp</dimen>
+    <dimen name="default8_margin">8dp</dimen>
+    <dimen name="default4_margin">4dp</dimen>
+
+</resources>

@@ -5,7 +5,7 @@
     <color name="colorAccent">#000000</color>
     <color name="black">#000000</color>
     <color name="red">#ff0000</color>
-
+    <color name="transparent_background">#DE42A5F5</color>
 
     <color name="not_attemped">#ffff00</color>
     <color name="falid">#ff0000</color>

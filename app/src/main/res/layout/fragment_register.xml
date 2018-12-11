@@ -5,22 +5,30 @@
     android:layout_gravity="center_vertical"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/register_email_edit_text"
-        style="@style/RegisterFields"
-        android:hint="@string/email" />
+    <android.support.design.widget.TextInputLayout
+        style="@style/RegisterFields">
+        <EditText
+            android:id="@+id/register_email_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/register_password_edit_text"
-        style="@style/RegisterFields"
-        android:hint="@string/password"
-        android:inputType="textPassword" />
+    <android.support.design.widget.TextInputLayout
+        style="@style/RegisterFields">
+        <EditText
+            android:id="@+id/register_password_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="@string/password" />
+    </android.support.design.widget.TextInputLayout>
 
     <RadioGroup
         style="@style/RegisterFields"
-        android:layout_margin="@dimen/default8_margin"
-        android:orientation="horizontal">
-
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/default8_margin">
+        
         <RadioButton
             android:id="@+id/register_radio_teacher"
             android:layout_width="wrap_content"
@@ -34,36 +42,88 @@
             android:layout_height="wrap_content"
             android:text="@string/student"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
-
+        
     </RadioGroup>
 
     <TextView
         android:id="@+id/register_error_text_view"
         style="@style/RegisterFields"
-        android:textColor="@color/red"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:background="@color/red" />
 
     <ProgressBar
         android:id="@+id/register_loading_progress_bar"
-        android:layout_width="@dimen/progress_bar_dimens"
-        android:layout_height="@dimen/progress_bar_dimens"
-        android:layout_gravity="center_horizontal"
-        android:visibility="gone" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateDrawable="@drawable/progress_icon"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal" />
 
-    <Button
+    <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/next_button"
         style="@style/RegisterFields"
         android:layout_marginTop="@dimen/default16_margin"
-        android:text="@string/next" />
+        android:src="@drawable/navigate_next_white"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/click_login_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default16_margin"
-        android:gravity="center_horizontal"
         android:text="@string/click_here_to_login"
+        android:textStyle="bold"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        android:textStyle="bold" />
+        android:gravity="center_horizontal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default8_margin"
+            android:text="@string/or_register_using"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:background="@color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
+
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/register_facebook_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/default8_margin" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/register_google_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/default8_margin" />
+
+    </LinearLayout>
 
 </LinearLayout>

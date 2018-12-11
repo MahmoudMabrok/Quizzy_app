@@ -13,4 +13,6 @@
     <dimen name="textSize">16sp</dimen>
     <dimen name="margine_right_item">10dp</dimen>
 
+    <dimen name="default4_margin">4dp</dimen>
+
 </resources>
