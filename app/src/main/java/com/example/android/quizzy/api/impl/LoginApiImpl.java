@@ -114,6 +114,7 @@ public class LoginApiImpl implements LoginApi {
                             snapshot = iterator.next();
                             Teacher teacher = snapshot.getValue(Teacher.class);
                             if(teacher != null){
+
                                 if(teacher.getId().contentEquals(id)) {
                                     Log.d(TAG, "Found user as teacher");
                                     emitter.onSuccess(teacher);
