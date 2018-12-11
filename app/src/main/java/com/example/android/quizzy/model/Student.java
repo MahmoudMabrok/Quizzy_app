@@ -8,8 +8,11 @@ public class Student extends User {
     private String academicYear;
     private String teacherTelephoneNumber;
 
+    public Student(){
+        //No-arg constructor
+    }
 
-    public Student(@NonNull String id) {
+    public Student(@NonNull String id){
         super(id);
     }
 

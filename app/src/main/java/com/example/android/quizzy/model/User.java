@@ -10,7 +10,8 @@ public class User {
     private String lastName;
     private String city;
 
-    public User() {
+    User(){
+        //No-arg constructor
     }
 
     User(@NonNull String id) {
