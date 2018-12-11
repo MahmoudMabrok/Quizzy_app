@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/default16_margin"
+    android:padding="10dp"
+    android:background="@drawable/concrete">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvQuestion"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_weight="1"
+            android:text="a"
+            android:gravity="center_horizontal|center_vertical"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/ivEdit"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:layout_marginRight="@dimen/default16_margin"
+            android:src="@drawable/ic_mode_edit_black_24dp" />
+
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_delete_black_24dp" />
+
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

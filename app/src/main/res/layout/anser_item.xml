@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@drawable/concrete"
+    android:orientation="horizontal"
+    android:layout_marginBottom="@dimen/default16_margin">
+
+    <TextView
+        android:id="@+id/tvAnswer"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:gravity="center_horizontal"
+        android:textColor="#0000FF"
+        android:textSize="22sp"
+        android:layout_weight="1" />
+
+    <CheckBox
+        android:id="@+id/cbAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp" />
+
+</LinearLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical">
+
+    <LinearLayout style="@style/RegisterFields">
+
+        <EditText
+            android:id="@+id/register_student_first_name_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/first_name" />
+
+        <EditText
+            android:id="@+id/register_student_last_name_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/last_name" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/register_student_teacher_telephone_number_edit_text"
+        style="@style/RegisterFields"
+        android:hint="@string/teacher_telephone_number"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/register_student_academic_year_edit_text"
+        style="@style/RegisterFields"
+        android:hint="@string/academic_year" />
+
+    <EditText
+        android:id="@+id/register_student_city_edit_text"
+        style="@style/RegisterFields"
+        android:hint="@string/city" />
+
+    <TextView
+        android:id="@+id/register_student_error_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default16_margin"
+        android:gravity="center_horizontal"
+        android:textColor="@color/red"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/register_student_loading_progress_bar"
+        android:layout_width="@dimen/progress_bar_dimens"
+        android:layout_height="@dimen/progress_bar_dimens"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/register_student_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default8_margin"
+        android:text="@string/register" />
+
+</LinearLayout>

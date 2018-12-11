@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/default16_margin"
+    tools:context=".fragment.StudentReports">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/default16_margin"
+        tools:context=".fragment.StudentReports">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default16_margin"
+            android:background="@drawable/item_back"
+            android:gravity="center_horizontal"
+            android:text="Distribution Quizz"
+            android:textSize="22sp" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/piQuizzStudent"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginBottom="@dimen/default16_margin" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default16_margin"
+            android:background="@drawable/item_back"
+            android:gravity="center_horizontal"
+            android:text="Distribution Grades"
+            android:textSize="22sp" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/piQuizzStudentGrades"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginBottom="@dimen/default16_margin" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default16_margin"
+            android:layout_marginBottom="@dimen/default16_margin">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/item_back"
+                android:gravity="center"
+                android:text="Average Value " />
+
+            <TextView
+                android:id="@+id/tvAverageValueStudent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/item_back"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default16_margin"
+            android:layout_marginBottom="@dimen/default16_margin">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/item_back"
+                android:gravity="center"
+                android:text="Max Grade ☺☺☺" />
+
+            <TextView
+                android:id="@+id/tvmaxValueStudent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/item_back"
+                android:gravity="center" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default16_margin"
+            android:layout_marginBottom="@dimen/default16_margin">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/item_back"
+                android:gravity="center"
+                android:text="Min Grade ☹☹☹" />
+
+            <TextView
+                android:id="@+id/tvminValueStudent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/item_back"
+                android:gravity="center" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

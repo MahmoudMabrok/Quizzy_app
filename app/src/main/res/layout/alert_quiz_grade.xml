@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:padding="@dimen/default16_margin">
+
+
+    <az.plainpie.PieView
+        android:id="@+id/piGrade"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/default16_margin"
+        app:inner_pie_padding="40"
+        app:percentage_size="100"
+        android:layout_height="wrap_content"
+        app:percentage="25" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <com.brkckr.circularprogressbar.CircularProgressBar
+            android:id="@+id/circularProgressBar"
+            android:layout_gravity="center"
+            app:cpbBackgroundColor="#fc161e"
+            app:cpbBackgroundWidth="@dimen/background_width"
+            app:cpbProgressColor="#1bf713"
+            app:cpbProgressValue="15"
+            app:cpbProgressWidth="@dimen/progress_width"
+            app:cpbState="clockwise"
+            android:layout_width="match_parent"
+            android:layout_height="160dp" />
+
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22"
+            android:textSize="40sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/white" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="AAA"
+        android:textSize="25sp"
+        android:textColor="@color/white" />
+
+</LinearLayout>

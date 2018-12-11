@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">Evology</string>
+    <string name="teacher">Teacher</string>
+    <string name="student">Student</string>
+    <string name="login">Login</string>
+    <string name="next">Next</string>
+    <string name="register">Register</string>
+    <string name="register_as_student">Register As Student</string>
+    <string name="register_as_teacher">Register As Teacher</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="telephone_number">Telephone Number</string>
+    <string name="subject">Subject</string>
+    <string name="city">City</string>
+    <string name="teacher_telephone_number">Teacher Telephone Number</string>
+    <string name="academic_year">Academic Year</string>
+    <string name="click_here_to_register">Click here to register</string>
+    <string name="click_here_to_login">Click here to login</string>
+    <string name="no_internet_connection">No internet connection,\nplease connect to the internet and try again</string>
+    <string name="forgot_email_password">Please Enter your email and password</string>
+    <string name="invalid_email">Please enter email with valid format</string>
+    <string name="invalid_name">Please enter name consisting of only letters</string>
+    <string name="invalid_telephone_number">Please enter telephone number consisting of only numbers</string>
+    <string name="invalid_password">Please enter password of 6 characters or more</string>
+    <string name="check_student_teacher">Please check if you are a student or a teacher</string>
+    <string name="required_teacher_fields">Please enter at least first name, last name, subject and telephone number</string>
+    <string name="required_student_fields">Please enter at least first name, last name, and teacher telephone number</string>
+    <string name="logged_successfully">Logged Successfully</string>
+    <string name="you_are_logged">You are logged successfully</string>
+    <string name="error_login">Error occurs while Performing login, please try again later</string>
+    <string name="error_register">Error occurs while Performing register, please try again later</string>
+    <string name="signed_in">Signed in successfully</string>
+    <string name="teacher_with_same_number">There is a teacher with the same telephone number</string>
+    <string name="no_teacher_with_number">There is no teacher with this telephone number</string>
+    <string name="title_activity_teacher_home">TeacherHome</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add">add</string>
+    <string name="quiz_name">Quiz Name</string>
+    <string name="no_data_found">No Quizz Found ☹☹☹☹☹</string>
+    <string name="no_data_found1">No Data Found ☹☹☹☹☹</string>
+    <string name="title_activity_student">StudentActivity</string>
+    <string name="signout">Sign Out</string>
+    <string name="update">Update</string>
+    <string name="f">F</string>
+    <string name="s">S</string>
+    <string name="na">NA</string>
+
+
+    <string name="page1_title">No paper</string>
+    <string name="page1_description">Quizzes can be done with no paper</string>
+    <string name="page2_title">Digitize your work</string>
+    <string name="page2_description">Quizzes can be digitalized through mobile application</string>
+    <string name="page3_title">Keep in touch</string>
+    <string name="page3_description">Keep connected with your students anywhere, and anytime</string>
+    <string name="page4_title">Promote the process</string>
+    <string name="page4_description">Generate reports on students\' attitudes to promote the learning process</string>
+
+</resources>

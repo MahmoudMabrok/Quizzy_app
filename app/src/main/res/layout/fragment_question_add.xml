@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:padding="@dimen/default16_margin"
+    tools:context=".fragment.QuestionAddFragment">
+
+
+    <EditText
+        android:id="@+id/edQuestionAddFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter question" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edAnswerAddFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Enter answer" />
+
+        <Button
+            android:id="@+id/btnAddAnswer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:text="add Answer" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_height="0dp"
+        android:id="@+id/rvAnsWersAddQuizz"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/default16_margin"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btnAddQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:text="Add Question" />
+
+
+</LinearLayout>

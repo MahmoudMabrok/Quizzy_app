@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/default16_margin"
+    tools:context=".fragment.ReportsTeacherFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/default16_margin">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/header_back"
+            android:gravity="center_horizontal"
+            android:text="Quizzes Reports"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barTeacherQuizzes"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:visibility="gone" />
+
+
+        <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.Large.Circle"
+            android:layout_marginTop="@dimen/default16_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/colorPrimary" />
+
+
+        <TextView
+            android:id="@+id/tvNoInternet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/no_data_found"
+            android:textSize="30sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/QuizzReortsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margine_right_item"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="Quizz Name"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margine_right_item"
+                    android:layout_marginRight="@dimen/margine_right_item"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/f"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margine_right_item"
+                    android:layout_marginRight="@dimen/margine_right_item"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/s"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/na"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/dividerQuizzReports"
+                android:layout_width="fill_parent"
+                android:layout_height="5dp"
+                android:background="#c0c0c0" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvReportQuiezzTeacher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default16_margin" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default16_margin"
+            android:background="@drawable/header_back"
+            android:gravity="center_horizontal"
+            android:text="Students Reports"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+        <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit_student"
+            style="@style/SpinKitView.Large.Circle"
+            android:layout_marginTop="@dimen/default16_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/colorPrimary" />
+
+
+        <TextView
+            android:id="@+id/tvNoInternetStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/no_data_found"
+            android:textSize="30sp"
+            android:visibility="gone" />
+
+
+        <LinearLayout
+            android:id="@+id/StudentQuizzReportLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margine_right_item"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:text="Student Name"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margine_right_item"
+                    android:layout_marginRight="@dimen/margine_right_item"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/f"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margine_right_item"
+                    android:layout_marginRight="@dimen/margine_right_item"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/s"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/na"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="5dp"
+                android:background="#c0c0c0" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvReportStudentsGradesTeacherFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default16_margin" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

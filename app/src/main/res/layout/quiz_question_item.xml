@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/default16_margin"
+    android:background="#ffffff"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/default16_margin">
+
+    <TextView
+        android:id="@+id/tvQuestionNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default16_margin"
+        android:gravity="center_horizontal"
+        android:text="Q1"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/tvQuestionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_back"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/default16_margin"
+        android:text="Mo3tamed"
+        android:textSize="22sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default16_margin"
+        android:gravity="center_horizontal"
+        android:text="Select the correct answer from below list ☺☺☺"
+        android:textSize="22sp" />
+
+    <Spinner
+        android:id="@+id/spAnswerList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/stateOK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Anwer is Correct"
+        android:textColor="#00ff00"
+        android:textSize="22sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/stateOFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Anwer is Wrong"
+        android:textColor="#ff0000"
+        android:textSize="22sp"
+        android:visibility="gone" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvQuizzAnwerQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default16_margin" />
+
+
+</LinearLayout>

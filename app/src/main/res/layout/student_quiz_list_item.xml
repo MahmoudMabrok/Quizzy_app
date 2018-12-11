@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="@dimen/default16_margin"
+    android:alpha="90"
+    android:background="@drawable/quizz_back"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvQuizName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quiz1"
+        android:textSize="27sp" />
+
+    <TextView
+        android:id="@+id/tvQuizTeacherName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="Ahmed"
+        android:textSize="@dimen/textSize" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default16_margin"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvQuizTotalScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:text="0 %"
+            android:textSize="18dp" />
+
+        <az.plainpie.PieView
+            android:id="@+id/piStudent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            app:percentage="25" />
+
+        <TextView
+            android:id="@+id/tvQuizState"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:gravity="center_horizontal"
+            android:text="Not Attempted"
+            android:textColor="@color/not_attemped"
+            android:textSize="18dp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

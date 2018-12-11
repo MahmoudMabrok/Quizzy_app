@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:padding="@dimen/default16_margin"
+    android:gravity="center"
+    tools:context=".activity.Entry">
+
+    <Button
+        android:id="@+id/btnIoenTeacher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Teacher"
+        android:gravity="center_horizontal"
+        android:background="@drawable/button"
+        android:layout_marginBottom="@dimen/default16_margin"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/btnIoenStudent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Student"
+        android:gravity="center_horizontal"
+        android:background="@drawable/button"
+        android:textSize="22sp" />
+
+
+</LinearLayout>
