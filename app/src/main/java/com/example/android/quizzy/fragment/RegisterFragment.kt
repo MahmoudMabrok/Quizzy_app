@@ -116,7 +116,7 @@ class RegisterFragment : Fragment() {
 
     private fun setClickLoginOnClickListener(){
         click_login_text_view.setOnClickListener{
-            transient.openFragment(LoginFragment())
+            transient.openFragment(this, LoginFragment())
         }
     }
 
@@ -255,10 +255,10 @@ class RegisterFragment : Fragment() {
 
     private fun performNext(inputs : HashMap<String, Any>){
         if(register_radio_student.isChecked){
-            transient.openFragment(RegisterStudentFragment.newInstance(inputs))
+            transient.openFragment(this, RegisterStudentFragment.newInstance(inputs))
         }
         else if(register_radio_teacher.isChecked){
-            transient.openFragment(RegisterTeacherFragment.newInstance(inputs))
+            transient.openFragment(this, RegisterTeacherFragment.newInstance(inputs))
         }
         else{
             showErrorMessage(R.string.check_student_teacher)
