@@ -8,12 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.quizzy.R;
 import com.example.android.quizzy.interfaces.OnQuizzClick;
 import com.example.android.quizzy.model.Quiz;
-import com.example.android.quizzy.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +45,7 @@ public class QuizeListStudentAdapter extends RecyclerView.Adapter<QuizeListStude
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.student_quiz_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.to_do, parent, false);
         return new ViewHolder(view);
     }
 
@@ -55,20 +53,20 @@ public class QuizeListStudentAdapter extends RecyclerView.Adapter<QuizeListStude
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
-        holder.tvQuizState.setText("Not Attempted"); //in case of deleted items and re-binded
         Quiz quiz = quizList.get(position);
-        holder.tvQuizName.setText(quiz.getName());
+        holder.tvReportQuizzName.setText(quiz.getName());
+    /*    holder.tvQuizName.setText(quiz.getName());
         holder.tvQuizTeacherName.setText(quiz.getTeacherKey());
         String text = "N/A";
         holder.tvQuizTotalScore.setText(text);
         holder.tvQuizState.setTextColor(Color.DKGRAY);
-        holder.tvQuizState.setBackgroundColor(Color.WHITE);
+        holder.tvQuizState.setBackgroundColor(Color.WHITE);*/
 
-        final Quiz finalQuiz = quiz;
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onQuizzClick.onQuizzClick(quizList.get(position));
+                onQuizzClick.onQuizzClick(quiz);
             }
         });
     }
@@ -79,23 +77,15 @@ public class QuizeListStudentAdapter extends RecyclerView.Adapter<QuizeListStude
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-    @BindView(R.id.tvQuizName)
-    TextView tvQuizName;
-    @BindView(R.id.tvQuizTeacherName)
-    TextView tvQuizTeacherName;
-    @BindView(R.id.tvQuizTotalScore)
-    TextView tvQuizTotalScore;
-    @BindView(R.id.piStudent)
-    PieView piStudent;
-    @BindView(R.id.tvQuizState)
-    TextView tvQuizState;
+        @BindView(R.id.tvReportQuizzName)
+        TextView tvReportQuizzName;
 
 
-    ViewHolder(View view) {
-        super(view);
-        ButterKnife.bind(this, view);
+        ViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
+        }
     }
-}
 
 }
 

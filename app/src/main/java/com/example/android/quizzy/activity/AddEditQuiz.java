@@ -82,7 +82,6 @@ public class AddEditQuiz extends AppCompatActivity implements onQuestionAdd, Tim
     private String quizzKey;
     private boolean isUpdate;
 
-
     private int hours, minuts;
     Animation animationDown;
     Animation animationUP;
@@ -124,7 +123,7 @@ public class AddEditQuiz extends AppCompatActivity implements onQuestionAdd, Tim
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String name = (String) dataSnapshot.child("name").getValue();
                 edQuizName.setText(name);
-                 quiz = dataSnapshot.getValue(Quiz.class);
+                quiz = dataSnapshot.getValue(Quiz.class);
 
                 hours = quiz.getHour();
                 minuts = quiz.getMinute();
@@ -220,8 +219,8 @@ public class AddEditQuiz extends AppCompatActivity implements onQuestionAdd, Tim
         if (!TextUtils.isEmpty(quizName)) {
             if (questionList.size() > 0) {
                 Quiz newQuizz = new Quiz();
-                if (quiz != null){
-                    newQuizz = quiz ;
+                if (quiz != null) {
+                    newQuizz = quiz;
                 }
                 newQuizz.setName(quizName);
                 newQuizz.setQuestionList(questionList);

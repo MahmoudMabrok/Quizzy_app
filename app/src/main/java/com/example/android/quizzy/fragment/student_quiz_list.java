@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,13 +51,21 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
     RecyclerView rvStudentDoneQuizz;
     @BindView(R.id.spin_kit_student_to_do)
     SpinKitView spinKitStudentToDo;
-  
+
     @BindView(R.id.rv_Student_to_do_Quizz)
     RecyclerView rvStudentToDoQuizz;
     @BindView(R.id.tvNoQuizzCompleted)
     TextView tvNoQuizzCompleted;
     @BindView(R.id.tvNoQuizzToDo)
     TextView tvNoQuizzToDo;
+    @BindView(R.id.dividerQuizzCompleted)
+    View dividerQuizzCompleted;
+    @BindView(R.id.rvReportQuiezzTeacher)
+    RecyclerView rvReportQuiezzTeacher;
+    @BindView(R.id.QuizzCompletedLayout)
+    LinearLayout QuizzCompletedLayout;
+    @BindView(R.id.tv_no_data)
+    TextView tvNoData;
 
 
     private List<Quiz> completedList = new ArrayList<>();
@@ -100,6 +109,13 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
         setSpin(View.VISIBLE);
         controlTVNoData(View.GONE);
 
+        controlDetails1(View.GONE);
+
+    }
+
+    private void controlDetails1(int gone) {
+        dividerQuizzCompleted.setVisibility(gone);
+        QuizzCompletedLayout.setVisibility(gone);
     }
 
     private void controlTVNoData(int gone) {
@@ -123,13 +139,13 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
                     if (temp != null && temp.getName() != null) {
                         if (temp.isShown()) {
                             if (!chechIfItInCompleteList(temp)) // check if it in complete list
-                            quizList.add(temp);
+                                quizList.add(temp);
                         }
                     }
                 }
                 if (rvStudentToDoQuizz != null) {
                     spinKitStudentToDo.setVisibility(View.GONE);
-                    if (quizList.size() > 0  ) {
+                    if (quizList.size() > 0) {
                         adapter.setList(quizList);
                         foundDataState();
                     } else {
@@ -144,32 +160,30 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
             }
         });
 
-
     }
 
     /**
-     *
      * @param quiz
      * @return
      */
     private boolean chechIfItInCompleteList(Quiz quiz) {
         for (Quiz q : completedList) {
             if (q.getKey().equals(quiz.getKey())) {
-                return true ;
+                return true;
             }
         }
-        return false ;
+        return false;
     }
 
 
     private void notFounddataState() {
-       rvStudentToDoQuizz.setVisibility(View.GONE);
-       tvNoQuizzToDo.setVisibility(View.VISIBLE);
+        rvStudentToDoQuizz.setVisibility(View.GONE);
+        tvNoQuizzToDo.setVisibility(View.VISIBLE);
     }
 
     private void foundDataState() {
-       rvStudentToDoQuizz.setVisibility(View.VISIBLE);
-       tvNoQuizzToDo.setVisibility(View.GONE);
+        rvStudentToDoQuizz.setVisibility(View.VISIBLE);
+        tvNoQuizzToDo.setVisibility(View.GONE);
 
     }
 
@@ -217,12 +231,15 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
     private void loadedStateComplete() {
         rvStudentDoneQuizz.setVisibility(View.VISIBLE);
         tvNoQuizzCompleted.setVisibility(View.GONE);
+
+        controlDetails1(View.VISIBLE);
     }
 
     private void emptyCompleteState() {
         rvStudentDoneQuizz.setVisibility(View.GONE);
         tvNoQuizzCompleted.setVisibility(View.VISIBLE);
 
+        controlDetails1(View.GONE);
     }
 
     private void initRv() {
@@ -233,7 +250,7 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
         rvStudentDoneQuizz.setAdapter(completeAdapter);
 
         LinearLayoutManager managerToDo = new LinearLayoutManager(getContext());
-        adapter  = new QuizeListStudentAdapter(this);
+        adapter = new QuizeListStudentAdapter(this);
         rvStudentToDoQuizz.setLayoutManager(managerToDo);
         rvStudentToDoQuizz.setAdapter(adapter);
 
