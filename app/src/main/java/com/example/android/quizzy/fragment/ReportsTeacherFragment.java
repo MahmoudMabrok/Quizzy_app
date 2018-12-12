@@ -44,8 +44,7 @@ import butterknife.Unbinder;
  */
 public class ReportsTeacherFragment extends Fragment implements OnQuizzReportClick {
 
-    @BindView(R.id.barTeacherQuizzes)
-    BarChart barTeacherQuizzes;
+
     Unbinder unbinder;
     @BindView(R.id.rvReportQuiezzTeacher)
     RecyclerView rvReportQuiezzTeacher;

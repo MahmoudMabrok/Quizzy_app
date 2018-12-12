@@ -45,7 +45,7 @@ public class ShowSolvedQuiz extends Fragment {
     }
 
     private void initRV() {
-        adapter = new QuestionQuizAdapter();
+        adapter = new QuestionQuizAdapter(getContext());
         rvQuizzQuestionList.setAdapter(adapter);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         rvQuizzQuestionList.setLayoutManager(manager);

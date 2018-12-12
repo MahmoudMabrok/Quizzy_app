@@ -81,7 +81,6 @@ public class TeacherHome extends AppCompatActivity
 
         key = getIntent().getStringExtra(Constants.TELEPHONE_NUMBER_KEY);
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

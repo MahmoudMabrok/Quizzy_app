@@ -1,7 +1,6 @@
 package com.example.android.quizzy.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,45 +22,55 @@ import butterknife.ButterKnife;
 /**
  * Created by Mahmoud on 10/22/2018.
  */
-
-public class QuizeListStudentAdapter extends RecyclerView.Adapter<QuizeListStudentAdapter.ViewHolder> {
+public class QuizeListCompletedStudentAdapter extends RecyclerView.Adapter<QuizeListCompletedStudentAdapter.ViewHolder> {
 
     Quiz quiz;
+
     private Context context;
-    private List<Quiz> quizList;
+    private List<Quiz> completeList;
     private OnQuizzClick onQuizzClick;
 
-    public QuizeListStudentAdapter(OnQuizzClick click) {
-        this.context = context;
+    public QuizeListCompletedStudentAdapter(OnQuizzClick click) {
         onQuizzClick = click;
-        quizList = new ArrayList<>();
     }
 
-    public void setList(List<Quiz> list) {
-        quizList = new ArrayList<>(list);
+    public void setList(List<Quiz> list, List<Quiz> completeList) {
+        this.completeList = new ArrayList<>(completeList);
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.to_do, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.complete_item, parent, false);
         return new ViewHolder(view);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-
-        Quiz quiz = quizList.get(position);
+        Quiz quiz = completeList.get(position);
         holder.tvReportQuizzName.setText(quiz.getName());
-    /*    holder.tvQuizName.setText(quiz.getName());
+        holder.quizzPercentage.setText(quiz.getPercentage() + "%");
+
+        /*
+        holder.tvQuizState.setText("Not Attempted"); //in case of deleted items and re-binded
+
+        holder.tvQuizName.setText(quiz.getName());
         holder.tvQuizTeacherName.setText(quiz.getTeacherKey());
         String text = "N/A";
+        text = (quiz.getScore()) + " / " + quiz.getQuestionList().size();
         holder.tvQuizTotalScore.setText(text);
-        holder.tvQuizState.setTextColor(Color.DKGRAY);
-        holder.tvQuizState.setBackgroundColor(Color.WHITE);*/
-
+        holder.piStudent.setPercentage(quiz.getPercentage());
+        if (quiz.getGrade() == Constants.FAILED) {
+            holder.tvQuizState.setTextColor(Color.YELLOW);
+            holder.tvQuizState.setBackgroundColor(Color.RED);
+            holder.tvQuizState.setText("Failed");
+        } else {
+            holder.tvQuizState.setTextColor(Color.GREEN);
+            holder.tvQuizState.setBackgroundColor(Color.BLACK);
+            holder.tvQuizState.setText("Succeded");
+        }
+*/
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,16 +78,25 @@ public class QuizeListStudentAdapter extends RecyclerView.Adapter<QuizeListStude
                 onQuizzClick.onQuizzClick(quiz);
             }
         });
+
     }
+
 
     @Override
     public int getItemCount() {
-        return quizList.size();
+        return completeList.size();
+    }
+
+    public void addCompleteList(List<Quiz> completedList) {
+        this.completeList = new ArrayList<>(completedList);
+        notifyDataSetChanged();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tvReportQuizzName)
         TextView tvReportQuizzName;
+        @BindView(R.id.quizzPercentage)
+        TextView quizzPercentage;
 
 
         ViewHolder(View view) {
@@ -88,4 +106,3 @@ public class QuizeListStudentAdapter extends RecyclerView.Adapter<QuizeListStude
     }
 
 }
-

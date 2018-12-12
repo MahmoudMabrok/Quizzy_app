@@ -22,14 +22,9 @@
             android:textColor="@color/white"
             android:textSize="22sp" />
 
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/barTeacherQuizzes"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:visibility="gone" />
 
-
-        <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.github.ybq.android.spinkit.SpinKitView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/spin_kit"
             style="@style/SpinKitView.Large.Circle"
             android:layout_marginTop="@dimen/default16_margin"

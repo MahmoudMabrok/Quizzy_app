@@ -39,7 +39,18 @@
         android:id="@+id/spAnswerList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:gravity="center_horizontal" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"/>
+
+
 
     <TextView
         android:id="@+id/stateOK"
