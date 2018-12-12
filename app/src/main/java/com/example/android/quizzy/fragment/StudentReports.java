@@ -166,7 +166,6 @@ public class StudentReports extends Fragment {
                 computeDistributionQuizzes();
                 comptueParamter();
 
-
             }
 
             @Override

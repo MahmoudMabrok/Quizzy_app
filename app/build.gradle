@@ -70,7 +70,7 @@ dependencies {
   //  implementation  'com.github.zagum:Android-SwitchIcon:1.3.8'
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
     implementation 'com.github.brkckr:CircularProgressBar:1.0.1'
-    compile 'com.github.zcweng:switch-button:0.0.3@aar'
+    implementation 'com.github.zcweng:switch-button:0.0.3@aar'
 }
 
 apply plugin: 'com.google.gms.google-services'

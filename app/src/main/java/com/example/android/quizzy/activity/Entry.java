@@ -5,26 +5,21 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.android.quizzy.R;
-import com.example.android.quizzy.model.Student;
 import com.example.android.quizzy.util.Constants;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import durdinapps.rxfirebase2.RxFirebaseDatabase;
-import io.reactivex.disposables.Disposable;
 
 public class Entry extends AppCompatActivity {
 
@@ -32,6 +27,8 @@ public class Entry extends AppCompatActivity {
     Button btnIoenTeacher;
     @BindView(R.id.btnIoenStudent)
     Button btnIoenStudent;
+    @BindView(R.id.spin_kit)
+    SpinKitView spinKit;
 
 
     @Override
@@ -44,14 +41,15 @@ public class Entry extends AppCompatActivity {
 
     String name = "Mahmoud";
     String teacherID = "0114919427";
-    String eqmilStudent = "a@gmail.com";
+
+
+    String eqmilStudent = "d@gmail.com";
     String eqmilTeacher = "aa@gmail.com";
     String pass = "123456";
 
     @Override
     protected void onResume() {
-        super.onResume();
-/*
+        super.onResume();/*
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(eqmil , pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -104,10 +102,10 @@ public class Entry extends AppCompatActivity {
     @OnClick(R.id.btnIoenTeacher)
     public void onBtnIoenTeacherClicked() {
 
-        String TeacherTelephone = "0114919427";
+        String TeacherTelephone = "011";
         name = "MR mabrok";
         Intent intent = new Intent(Entry.this, TeacherHome.class);
-        intent.putExtra(Constants.TEACHER_TELEPHONE_NUMBER_KEY, TeacherTelephone);
+        intent.putExtra(Constants.TELEPHONE_NUMBER_KEY, TeacherTelephone);
         intent.putExtra(Constants.Teacher_NAME, name);
         startActivity(intent);
 
@@ -127,33 +125,16 @@ public class Entry extends AppCompatActivity {
 
     @OnClick(R.id.btnIoenStudent)
     public void onBtnIoenStudentClicked() {
-
-        String TeacherTelephone = "0114919427";
+        String TeacherTelephone = "011";
         name = "Mahmoud";
         Intent intent = new Intent(Entry.this, StudentActivity.class);
         intent.putExtra(Constants.TEACHER_TELEPHONE_NUMBER_KEY, TeacherTelephone);
         intent.putExtra(Constants.STUDENT_NAME_KEY, name);
         startActivity(intent);
 
+    }
 
-      /*  FirebaseAuth.getInstance().signInWithEmailAndPassword(eqmilStudent , pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    String TeacherTelephone  = "0114919427" ;
-                    name = "Mahmoud" ;
-                    Intent intent = new Intent(Entry.this  ,StudentActivity.class);
-                    intent.putExtra(Constants.TEACHER_TELEPHONE_NUMBER_KEY , TeacherTelephone);
-                    intent.putExtra(Constants.STUDENT_NAME_KEY , name);
-                    startActivity(intent);
-
-                }   else{
-                    Toast.makeText(Entry.this, "Error", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });*/
-
-       /* Intent intent = new Intent(this, StudentActivity.class);
-        startActivity(intent);*/
+    private void showSpin() {
+        spinKit.setVisibility(View.VISIBLE);
     }
 }

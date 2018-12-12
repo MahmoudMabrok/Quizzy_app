@@ -14,11 +14,13 @@ import android.widget.Toast;
 
 import com.example.android.quizzy.R;
 import com.example.android.quizzy.activity.QuizzQuestion;
+import com.example.android.quizzy.adapter.QuizeListCompletedStudentAdapter;
 import com.example.android.quizzy.adapter.QuizeListStudentAdapter;
 import com.example.android.quizzy.api.DataRepo;
 import com.example.android.quizzy.interfaces.OnQuizzClick;
 import com.example.android.quizzy.model.Quiz;
 import com.example.android.quizzy.util.Constants;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -41,9 +43,20 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
     DataRepo dataRepo = new DataRepo();
     QuizeListStudentAdapter adapter;
     @BindView(R.id.spin_kit)
-    com.github.ybq.android.spinkit.SpinKitView spinKit;
-    @BindView(R.id.tv_no_data)
-    TextView tvNoData;
+    SpinKitView spinKit;
+    @BindView(R.id.spin_kit_completed_quizz)
+    SpinKitView spinKitCompletedQuizz;
+    @BindView(R.id.rv_Student_done_Quizz)
+    RecyclerView rvStudentDoneQuizz;
+    @BindView(R.id.spin_kit_student_to_do)
+    SpinKitView spinKitStudentToDo;
+  
+    @BindView(R.id.rv_Student_to_do_Quizz)
+    RecyclerView rvStudentToDoQuizz;
+    @BindView(R.id.tvNoQuizzCompleted)
+    TextView tvNoQuizzCompleted;
+    @BindView(R.id.tvNoQuizzToDo)
+    TextView tvNoQuizzToDo;
 
 
     private List<Quiz> completedList = new ArrayList<>();
@@ -51,6 +64,7 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
     private String studentName;
     private String studentUUID;
     private String teacherID;
+    private QuizeListCompletedStudentAdapter completeAdapter;
 
     public student_quiz_list() {
         // Required empty public constructor
@@ -78,20 +92,19 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
         loadState();
         initRv();
         retriveCompletedList(studentUUID);
-        retriveQuizzList(teacherID);
-
         return view;
     }
 
     private void loadState() {
         showRv(View.GONE);
         setSpin(View.VISIBLE);
-        setTextView(View.GONE);
+        controlTVNoData(View.GONE);
 
     }
 
-    private void setTextView(int gone) {
-        tvNoData.setVisibility(gone);
+    private void controlTVNoData(int gone) {
+        tvNoQuizzCompleted.setVisibility(gone);
+        tvNoQuizzToDo.setVisibility(gone);
     }
 
     private void setSpin(int visible) {
@@ -105,25 +118,24 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
                 Quiz temp;
                 quizList = new ArrayList<>();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    Log.d(TAG, "@2 onDataChange: " + dataSnapshot1);
+                    Log.d(TAG, "no complete  " + dataSnapshot1);
                     temp = dataSnapshot1.getValue(Quiz.class);
                     if (temp != null && temp.getName() != null) {
                         if (temp.isShown()) {
+                            if (!chechIfItInCompleteList(temp)) // check if it in complete list
                             quizList.add(temp);
                         }
                     }
                 }
-                if (rvQuizListStudent != null) {
-                    setSpin(View.GONE);
-                    if (quizList.size() > 0 && completedList != null) {
-                        adapter.setList(quizList, completedList);
+                if (rvStudentToDoQuizz != null) {
+                    spinKitStudentToDo.setVisibility(View.GONE);
+                    if (quizList.size() > 0  ) {
+                        adapter.setList(quizList);
                         foundDataState();
                     } else {
                         notFounddataState();
                     }
                 }
-
-
             }
 
             @Override
@@ -135,19 +147,34 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
 
     }
 
+    /**
+     *
+     * @param quiz
+     * @return
+     */
+    private boolean chechIfItInCompleteList(Quiz quiz) {
+        for (Quiz q : completedList) {
+            if (q.getKey().equals(quiz.getKey())) {
+                return true ;
+            }
+        }
+        return false ;
+    }
+
+
     private void notFounddataState() {
-        setTextView(View.VISIBLE);
-        showRv(View.GONE);
+       rvStudentToDoQuizz.setVisibility(View.GONE);
+       tvNoQuizzToDo.setVisibility(View.VISIBLE);
     }
 
     private void foundDataState() {
-        setTextView(View.GONE);
-        showRv(View.VISIBLE);
+       rvStudentToDoQuizz.setVisibility(View.VISIBLE);
+       tvNoQuizzToDo.setVisibility(View.GONE);
 
     }
 
     private void showRv(int visible) {
-        rvQuizListStudent.setVisibility(visible);
+        rvStudentDoneQuizz.setVisibility(visible);
     }
 
     private void retriveCompletedList(String studentUUID) {
@@ -163,7 +190,17 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
                         list.add(temp);
                     }
                 }
-                completedList = new ArrayList<>(list);
+                if (rvStudentDoneQuizz != null) { // in (active state )
+                    completedList = new ArrayList<>(list);
+                    spinKitCompletedQuizz.setVisibility(View.GONE);
+                    if (completedList.size() > 0) { // there are a data to show
+                        loadedStateComplete();
+                        completeAdapter.addCompleteList(list);
+                    } else {
+                        emptyCompleteState();
+                    }
+                    startToDoRetrive();
+                }
             }
 
             @Override
@@ -173,11 +210,33 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
         });
     }
 
+    private void startToDoRetrive() {
+        retriveQuizzList(teacherID);
+    }
+
+    private void loadedStateComplete() {
+        rvStudentDoneQuizz.setVisibility(View.VISIBLE);
+        tvNoQuizzCompleted.setVisibility(View.GONE);
+    }
+
+    private void emptyCompleteState() {
+        rvStudentDoneQuizz.setVisibility(View.GONE);
+        tvNoQuizzCompleted.setVisibility(View.VISIBLE);
+
+    }
+
     private void initRv() {
-        adapter = new QuizeListStudentAdapter(getContext(), this);
-        LinearLayoutManager manager = new LinearLayoutManager(getContext());
-        rvQuizListStudent.setLayoutManager(manager);
-        rvQuizListStudent.setAdapter(adapter);
+        //  adapter = new QuizeListStudentAdapter(getContext(), this);
+        LinearLayoutManager managerCompleted = new LinearLayoutManager(getContext());
+        completeAdapter = new QuizeListCompletedStudentAdapter(this);
+        rvStudentDoneQuizz.setLayoutManager(managerCompleted);
+        rvStudentDoneQuizz.setAdapter(completeAdapter);
+
+        LinearLayoutManager managerToDo = new LinearLayoutManager(getContext());
+        adapter  = new QuizeListStudentAdapter(this);
+        rvStudentToDoQuizz.setLayoutManager(managerToDo);
+        rvStudentToDoQuizz.setAdapter(adapter);
+
     }
 
     @Override

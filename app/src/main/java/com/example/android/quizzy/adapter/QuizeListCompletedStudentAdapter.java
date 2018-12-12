@@ -25,22 +25,19 @@ import butterknife.ButterKnife;
 /**
  * Created by Mahmoud on 10/22/2018.
  */
-
-public class QuizeListStudentAdapter extends RecyclerView.Adapter<QuizeListStudentAdapter.ViewHolder> {
+public class QuizeListCompletedStudentAdapter extends RecyclerView.Adapter<QuizeListCompletedStudentAdapter.ViewHolder> {
 
     Quiz quiz;
     private Context context;
-    private List<Quiz> quizList;
+    private List<Quiz> completeList;
     private OnQuizzClick onQuizzClick;
 
-    public QuizeListStudentAdapter(OnQuizzClick click) {
-        this.context = context;
+    public QuizeListCompletedStudentAdapter(OnQuizzClick click) {
         onQuizzClick = click;
-        quizList = new ArrayList<>();
     }
 
-    public void setList(List<Quiz> list) {
-        quizList = new ArrayList<>(list);
+    public void setList(List<Quiz> list, List<Quiz> completeList) {
+        this.completeList = new ArrayList<>(completeList);
         notifyDataSetChanged();
     }
 
@@ -51,51 +48,64 @@ public class QuizeListStudentAdapter extends RecyclerView.Adapter<QuizeListStude
         return new ViewHolder(view);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
         holder.tvQuizState.setText("Not Attempted"); //in case of deleted items and re-binded
-        Quiz quiz = quizList.get(position);
+        Quiz quiz = completeList.get(position);
         holder.tvQuizName.setText(quiz.getName());
         holder.tvQuizTeacherName.setText(quiz.getTeacherKey());
         String text = "N/A";
+        text = (quiz.getScore()) + " / " + quiz.getQuestionList().size();
         holder.tvQuizTotalScore.setText(text);
-        holder.tvQuizState.setTextColor(Color.DKGRAY);
-        holder.tvQuizState.setBackgroundColor(Color.WHITE);
+        holder.piStudent.setPercentage(quiz.getPercentage());
+        if (quiz.getGrade() == Constants.FAILED) {
+            holder.tvQuizState.setTextColor(Color.YELLOW);
+            holder.tvQuizState.setBackgroundColor(Color.RED);
+            holder.tvQuizState.setText("Failed");
+        } else {
+            holder.tvQuizState.setTextColor(Color.GREEN);
+            holder.tvQuizState.setBackgroundColor(Color.BLACK);
+            holder.tvQuizState.setText("Succeded");
+        }
 
-        final Quiz finalQuiz = quiz;
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onQuizzClick.onQuizzClick(quizList.get(position));
+                onQuizzClick.onQuizzClick(quiz);
             }
         });
+
     }
+
 
     @Override
     public int getItemCount() {
-        return quizList.size();
+        return completeList.size();
+    }
+
+    public void addCompleteList(List<Quiz> completedList) {
+        this.completeList = new ArrayList<>(completedList);
+        notifyDataSetChanged();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-    @BindView(R.id.tvQuizName)
-    TextView tvQuizName;
-    @BindView(R.id.tvQuizTeacherName)
-    TextView tvQuizTeacherName;
-    @BindView(R.id.tvQuizTotalScore)
-    TextView tvQuizTotalScore;
-    @BindView(R.id.piStudent)
-    PieView piStudent;
-    @BindView(R.id.tvQuizState)
-    TextView tvQuizState;
+        @BindView(R.id.tvQuizName)
+        TextView tvQuizName;
+        @BindView(R.id.tvQuizTeacherName)
+        TextView tvQuizTeacherName;
+        @BindView(R.id.tvQuizTotalScore)
+        TextView tvQuizTotalScore;
+        @BindView(R.id.piStudent)
+        PieView piStudent;
+        @BindView(R.id.tvQuizState)
+        TextView tvQuizState;
 
 
-    ViewHolder(View view) {
-        super(view);
-        ButterKnife.bind(this, view);
+        ViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
+        }
     }
-}
 
 }
-

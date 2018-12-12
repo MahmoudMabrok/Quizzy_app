@@ -1,108 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f2f2f2"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical"
-    android:padding="@dimen/default16_margin"
+
     tools:context=".activity.AddEditQuiz">
 
-    <RelativeLayout
-        android:id="@+id/quizzAndAddLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/edQuizName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/quiz_name"
-            android:minWidth="100dp"
-            android:textColorHint="#000000" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabAddQuestion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="end|top"
-            android:layout_marginLeft="@dimen/default16_margin"
-            android:src="@drawable/add"
-            app:backgroundTint="@color/passed" />
-    </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/questionContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#f2f2f2"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:orientation="vertical"
-        android:visibility="gone" />
+        android:padding="@dimen/default16_margin"
+        >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default16_margin"
-        android:background="@drawable/item_back"
-        android:gravity="center_horizontal"
-        android:padding="10dp"
-        android:text="Question List "
-        android:textSize="22sp" />
+        <RelativeLayout
+            android:id="@+id/quizzAndAddLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvQustionListTeacher"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/default16_margin"
-        android:foregroundGravity="center_horizontal" />
+            <EditText
+                android:id="@+id/edQuizName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/quiz_name"
+                android:minWidth="100dp"
+                android:textColorHint="#000000" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="5dp"
-        android:layout_marginTop="@dimen/default16_margin"
-        android:layout_marginBottom="@dimen/default16_margin"
-        android:background="#c0c0c0" />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fabAddQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="end|top"
+                android:layout_marginLeft="@dimen/default16_margin"
+                android:src="@drawable/add"
+                app:backgroundTint="@color/passed" />
+        </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/default16_margin">
+        <LinearLayout
+            android:id="@+id/questionContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone" />
 
-        <Button
-            android:id="@+id/btnSetTime"
-            android:layout_width="0dp"
-            android:layout_weight="2"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Set Time For Quiz" />
+            android:layout_marginTop="@dimen/default16_margin"
+            android:background="@drawable/item_back"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="Question List "
+            android:textSize="22sp" />
 
-        <TextView
-            android:id="@+id/quizzHours"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:layout_height="wrap_content" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvQustionListTeacher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/default16_margin"
+            android:foregroundGravity="center_horizontal" />
 
-        <TextView
-            android:id="@+id/quizzMin"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="start"
-            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="5dp"
+            android:layout_marginTop="@dimen/default16_margin"
+            android:background="#c0c0c0" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default16_margin">
+
+            <Button
+                android:id="@+id/btnSetTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Set Time For Quiz" />
+
+            <TextView
+                android:id="@+id/quizzHours"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end" />
+
+            <TextView
+                android:id="@+id/quizzMin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start" />
+
+        </LinearLayout>
+        <Button
+            android:id="@+id/btnSaveQuizz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/default16_margin"
+            android:background="@drawable/button"
+            android:gravity="center"
+            android:text="@string/add" />
 
     </LinearLayout>
-    <Button
-        android:id="@+id/btnSaveQuizz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/default16_margin"
-        android:background="@drawable/button"
-        android:gravity="center"
-        android:text="@string/add" />
 
-</LinearLayout>
+</ScrollView>
