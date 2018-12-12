@@ -1,13 +1,17 @@
 package com.example.android.quizzy.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -25,12 +29,14 @@ import butterknife.ButterKnife;
  */
 public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapter.ViewHolder> {
 
-
     private List<Question> questionList;
+    private Context context;
 
-    public QuestionQuizAdapter() {
+    public QuestionQuizAdapter(Context context) {
+        this.context = context;
         questionList = new ArrayList<>();
     }
+
 
     @NonNull
     @Override
@@ -47,8 +53,31 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
         holder.tvQuestionNum.setText(strNum);
         final Question question = questionList.get(position);
         holder.tvQuestionTitle.setText(question.getQuestion());
+        //handle radio group
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(holder.itemView.getContext(), android.R.layout.simple_dropdown_item_1line, question.getAnswerList());
+        RadioButton radioButton;
+        List<String> list = question.getAnswerList() ;
+        int c = 0 ;
+        for (String s : list) {
+            radioButton = new RadioButton(context);
+            radioButton.setText(s);
+            radioButton.setId(c);
+            radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP , 35);
+            radioButton.setPadding(16, 16, 16, 16);
+            holder.radioGroup.addView(radioButton);
+        }
+        holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                String answer = list.get(i);
+                question.setStudentAnswer(answer);
+                questionList.set(position, question);
+            }
+        });
+
+
+        //handle spinner
+ /*       ArrayAdapter<String> adapter = new ArrayAdapter<>(holder.itemView.getContext(), android.R.layout.simple_dropdown_item_1line, question.getAnswerList());
         holder.spAnswerList.setAdapter(adapter);
         holder.spAnswerList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -63,16 +92,20 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
-        holder.spAnswerList.setEnabled(true);
+        });*/
+       // holder.spAnswerList.setEnabled(true);
+
+
+
+
         //case solved quizz
         String answer = question.getStudentAnswer();
         Log.d(TAG, "onBindViewHolder: " + answer);
         if (answer != null) {
             int pos = question.getAnswerList().indexOf(answer);
             Log.d(TAG, "onBindViewHolder:  pos" + pos);
-            holder.spAnswerList.setSelection(pos);
-
+           // holder.spAnswerList.setSelection(pos);
+            holder.radioGroup.check(pos);
             if (question.getCorrectAnswer().equals(answer)) {
                 holder.stateOK.setVisibility(View.VISIBLE);
                 holder.stateOFF.setVisibility(View.GONE);
@@ -99,6 +132,7 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
                 }
             }
         });*/
+
 /*
         holder.cbAnswer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -138,12 +172,13 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
         Spinner spAnswerList;
         @BindView(R.id.rvQuizzAnwerQuestion)
         RecyclerView rvQuizzAnwerQuestion;
-
-
         @BindView(R.id.stateOK)
         TextView stateOK;
         @BindView(R.id.stateOFF)
         TextView stateOFF;
+
+        @BindView(R.id.radioGroup)
+        RadioGroup radioGroup;
 
         ViewHolder(View view) {
             super(view);

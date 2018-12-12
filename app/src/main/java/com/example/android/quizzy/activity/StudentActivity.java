@@ -64,7 +64,7 @@ public class StudentActivity extends AppCompatActivity
 
  //       checkLoginState(); // used to check state of curent user
       //  studentID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        show(studentID);
+     //   show(studentID);
       //  studentID = "9lHyq4mnSaTd1cURH5v5jGm52Mw1";
         studentID = "EHefJOONtBO6fU6GVHVpAjHnoa92";
        // Log.d(TAG, "onCreate: " + studentID);

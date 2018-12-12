@@ -136,7 +136,7 @@ public class QuizzQuestion extends AppCompatActivity {
 
 
     private void initRv() {
-        adapter = new QuestionQuizAdapter();
+        adapter = new QuestionQuizAdapter(this);
         rvQuizzQuestionList.setAdapter(adapter);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         rvQuizzQuestionList.setLayoutManager(manager);
