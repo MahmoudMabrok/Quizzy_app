@@ -14,11 +14,13 @@ import java.util.HashMap;
 
 public class Student_TeacherDialog extends Dialog implements View.OnClickListener {
 
+    private Context context;
     private LoginFragment fragment;
     private HashMap<String, Object> userInput;
 
     public Student_TeacherDialog(@NonNull Context context, LoginFragment fragment, HashMap<String, Object> userInput) {
         super(context);
+        this.context = context;
         this.fragment = fragment;
         this.userInput = userInput;
     }
@@ -38,10 +40,10 @@ public class Student_TeacherDialog extends Dialog implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_dialog_student :
-                fragment.getTransient().openFragment(RegisterStudentFragment.Companion.newInstance(userInput));
+                fragment.getTransient().openFragment(context, RegisterStudentFragment.Companion.newInstance(userInput));
                 break;
             case R.id.btn_dialog_teacher :
-                fragment.getTransient().openFragment(RegisterTeacherFragment.Companion.newInstance(userInput));
+                fragment.getTransient().openFragment(context, RegisterTeacherFragment.Companion.newInstance(userInput));
                 break;
         }
         dismiss();
