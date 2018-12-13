@@ -149,6 +149,7 @@ public class QuizzQuestion extends AppCompatActivity {
     public void onViewClicked() {
         countTimer.cancel();
         AttemptedQuiz attemptedQuiz = new AttemptedQuiz();
+        attemptedQuiz.setStudentUUID(sID);
         NotifactionItem notifactionItem = new NotifactionItem();
         notifactionItem.setQuizzName(quiz.getName());
 

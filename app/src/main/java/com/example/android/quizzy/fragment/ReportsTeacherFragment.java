@@ -25,8 +25,6 @@ import com.example.android.quizzy.model.Quiz;
 import com.example.android.quizzy.model.ReportQuizzItem;
 import com.example.android.quizzy.model.Student;
 import com.example.android.quizzy.util.Constants;
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -73,7 +71,6 @@ public class ReportsTeacherFragment extends Fragment implements OnQuizzReportCli
     }
 
     String teacherKey;
-    ArrayList<List<BarEntry>> listOfListEntries = new ArrayList<>();
     private DataRepo repo = new DataRepo();
     List<Data> dataList = new ArrayList<>();
 
