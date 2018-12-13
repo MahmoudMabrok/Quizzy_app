@@ -18,6 +18,7 @@ public class Question {
     private String StudentAnswer;
     private boolean state;
     private int weight;
+    private int selectedID  = -1 ;
     public Map<String, List<String>> theanswer;
 
     public Question() {
@@ -27,6 +28,14 @@ public class Question {
         this.question = question;
         this.weight = weight;
         this.correctAnswer = correctAnswer;
+    }
+
+    public int getSelectedID() {
+        return selectedID;
+    }
+
+    public void setSelectedID(int selectedID) {
+        this.selectedID = selectedID;
     }
 
     public String getStudentAnswer() {

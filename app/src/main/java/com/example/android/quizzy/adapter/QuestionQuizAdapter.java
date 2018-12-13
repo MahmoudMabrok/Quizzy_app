@@ -14,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.quizzy.R;
 import com.example.android.quizzy.model.Question;
@@ -48,32 +49,45 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
     private static final String TAG = "QuestionQuizAdapter";
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         String strNum = "Question " + (position + 1);
         holder.tvQuestionNum.setText(strNum);
         final Question question = questionList.get(position);
         holder.tvQuestionTitle.setText(question.getQuestion());
         //handle radio group
-
         RadioButton radioButton;
-        List<String> list = question.getAnswerList() ;
-        int c = 0 ;
+        List<String> list = question.getAnswerList();
+        int c = 0;
         for (String s : list) {
             radioButton = new RadioButton(context);
             radioButton.setText(s);
             radioButton.setId(c);
-            radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP , 35);
+            radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
             radioButton.setPadding(16, 16, 16, 16);
             holder.radioGroup.addView(radioButton);
         }
+
+
         holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                String answer = list.get(i);
-                question.setStudentAnswer(answer);
-                questionList.set(position, question);
+                if (i == -1) {
+                    show("error ");
+                } else {
+                    String answer = list.get(i);
+                   // question.setStudentAnswer(answer);
+                    question.setSelectedID(i);
+                   // questionList.set(position, question);
+                    show(answer + " i  " + i);
+                    notifyDataSetChanged();
+                }
             }
         });
+
+        if (question.getSelectedID() != -1) {
+            show("not " + question.getSelectedID()) ;
+            holder.radioGroup.check(question.getSelectedID());
+        }
 
 
         //handle spinner
@@ -93,9 +107,7 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
 
             }
         });*/
-       // holder.spAnswerList.setEnabled(true);
-
-
+        // holder.spAnswerList.setEnabled(true);
 
 
         //case solved quizz
@@ -104,8 +116,10 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
         if (answer != null) {
             int pos = question.getAnswerList().indexOf(answer);
             Log.d(TAG, "onBindViewHolder:  pos" + pos);
-           // holder.spAnswerList.setSelection(pos);
             holder.radioGroup.check(pos);
+            //  holder.radioGroup.setEnabled(false);
+            Log.d(TAG, "onBindViewHolder: 1x  " + holder.radioGroup.isEnabled());
+            Log.d(TAG, "onBindViewHolder: 1XX " + question.isState());
             if (question.getCorrectAnswer().equals(answer)) {
                 holder.stateOK.setVisibility(View.VISIBLE);
                 holder.stateOFF.setVisibility(View.GONE);
@@ -113,37 +127,12 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
                 holder.stateOFF.setVisibility(View.VISIBLE);
                 holder.stateOK.setVisibility(View.GONE);
             }
-
-            holder.spAnswerList.setEnabled(false);
         }
 
-      /*  final String s = anserList.get(position);
-        holder.tvAnswer.setText(s);
+    }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (holder.cbAnswer.isChecked()) {
-                    // checkedList.remove(s);
-                    holder.cbAnswer.setChecked(false);
-                } else {
-                    //checkedList.add(s);
-                    holder.cbAnswer.setChecked(true);
-                }
-            }
-        });*/
-
-/*
-        holder.cbAnswer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    checkedList.add(s);
-                } else {
-                    checkedList.remove(s);
-                }
-            }
-        });*/
+    private void show(String answer) {
+        Toast.makeText(context, answer, Toast.LENGTH_SHORT).show();
     }
 
 

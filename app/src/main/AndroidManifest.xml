@@ -32,6 +32,7 @@
 
         <activity
             android:name=".activity.AddEditQuiz"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
 
         <activity
@@ -42,10 +43,12 @@
 
         <activity
             android:name=".activity.QuizzQuestion"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
 
         <activity
             android:name=".activity.Entry"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
 
             <intent-filter>

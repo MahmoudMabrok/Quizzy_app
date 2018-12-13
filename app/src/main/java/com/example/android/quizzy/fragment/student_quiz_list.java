@@ -60,8 +60,6 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
     TextView tvNoQuizzToDo;
     @BindView(R.id.dividerQuizzCompleted)
     View dividerQuizzCompleted;
-    @BindView(R.id.rvReportQuiezzTeacher)
-    RecyclerView rvReportQuiezzTeacher;
     @BindView(R.id.QuizzCompletedLayout)
     LinearLayout QuizzCompletedLayout;
     @BindView(R.id.tv_no_data)

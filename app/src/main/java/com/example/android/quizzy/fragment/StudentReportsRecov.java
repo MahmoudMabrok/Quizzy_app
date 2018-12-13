@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.quizzy.R;
 import com.example.android.quizzy.api.DataRepo;
@@ -26,9 +25,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -40,8 +36,13 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class StudentReports extends Fragment {
+public class StudentReportsRecov extends Fragment {
     public static final String TAG = "StudentReports";
+    @BindView(R.id.piQuizzStudent)
+    PieChart piQuizzStudent;
+    @BindView(R.id.piQuizzStudentGrades)
+    PieChart piQuizzStudentGrades;
+    @BindView(R.id.tvAverageValueStudent)
     TextView tvAverageValueStudent;
     @BindView(R.id.tvmaxValueStudent)
     TextView tvmaxValueStudent;
@@ -86,6 +87,7 @@ public class StudentReports extends Fragment {
     }
 
 
+    
     private void comptueParamter() {
         int max = 0, min = 0;
         float avg = 0;

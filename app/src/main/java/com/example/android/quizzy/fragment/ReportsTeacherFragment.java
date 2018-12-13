@@ -23,6 +23,7 @@ import com.example.android.quizzy.model.AttemptedQuiz;
 import com.example.android.quizzy.model.Data;
 import com.example.android.quizzy.model.Quiz;
 import com.example.android.quizzy.model.ReportQuizzItem;
+import com.example.android.quizzy.model.Student;
 import com.example.android.quizzy.util.Constants;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarEntry;
@@ -140,7 +141,9 @@ public class ReportsTeacherFragment extends Fragment implements OnQuizzReportCli
                     Data data;
                     List<AttemptedQuiz> list;
                     AttemptedQuiz attemptedQuiz;
+
                     for (DataSnapshot quiz : dataSnapshot.getChildren()) { // for each quizz
+                 //       Quiz quiz1 = quiz.getValue(Quiz.class);
                         data = new Data();
                         data.setQuizName((String) quiz.child(Constants.QUIZZ_NAME).getValue());
                         quizzNames.add(data.getQuizName());
@@ -230,12 +233,14 @@ public class ReportsTeacherFragment extends Fragment implements OnQuizzReportCli
                     Log.d(TAG, "onDataChange:  complete" + dataSnapshot);
                     List<ReportQuizzItem> list = new ArrayList<>();
                     Quiz quiz;
-                    String StudnetNAME;
+                    String  firstName , lastName , StudnetNAME;
                     int fails = 0, success = 0, na = 0;
+
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                         StudnetNAME = (String) dataSnapshot1.child(Constants.STUDENT_NAME).getValue();
-                        Log.d(TAG, "StudnetNAME " + StudnetNAME);
                         fails = success = na = 0;
+
+                        Student student = dataSnapshot1.getValue(Student.class);
                         for (DataSnapshot dataSnapshot2 : dataSnapshot1.child(Constants.COMPLETED_QUIZZ).getChildren()) {
                             quiz = dataSnapshot2.getValue(Quiz.class);
                             if (quiz != null) {
@@ -248,6 +253,9 @@ public class ReportsTeacherFragment extends Fragment implements OnQuizzReportCli
                         }
                         na = n_quizzes - (fails + success);
                         na = na >= 0 ? na : 0;
+                        firstName = student.getFirstName() ;
+                        lastName = student.getLastName() ;
+                        StudnetNAME = firstName +" "+  lastName ;
                         list.add(new ReportQuizzItem(fails, success, na, StudnetNAME));
                     }
                     spinKitStudent.setVisibility(View.GONE);

@@ -158,11 +158,11 @@ public class QuizzQuestion extends AppCompatActivity {
         List<Question> questionList = adapter.getList();
         float score = 0;
         for (Question question : questionList) {
-            Log.d(TAG, "onViewClicked: 1 " + question.getStudentAnswer());
-            Log.d(TAG, "onViewClicked: 2 " + question.getCorrectAnswer());
-            if (question.getStudentAnswer().equals(question.getCorrectAnswer())) {
-                question.setState(true);
-                score++;
+            if (question.getStudentAnswer() != null ) {
+                if (question.getStudentAnswer().equals(question.getCorrectAnswer())) {
+                    question.setState(true);
+                    score++;
+                }
             }
         }
         Log.d(TAG, "score: " + score);
@@ -171,7 +171,6 @@ public class QuizzQuestion extends AppCompatActivity {
         quiz.setScore((int) score);
         double percentage = (score / quiz.getQuestionList().size() * 1.0) * 100;
         Log.d(TAG, "score : " + percentage);
-        show("percentage " + percentage);
         quiz.setPercentage((int) percentage);
         attemptedQuiz.setPercentage((int) percentage);
 
@@ -210,7 +209,7 @@ public class QuizzQuestion extends AppCompatActivity {
         attemptedQuiz.setQuestionArrayList(questionList);
         repo.addQuizTOCompleteList(quiz, sID);
         repo.addAttemted(attemptedQuiz, quizeID, teacher);
-        repo.addNotification(teacher, notifactionItem);
+     //   repo.addNotification(teacher, notifactionItem);
 
         show("Quizz Solved ");
 
