@@ -35,8 +35,6 @@ public class FragmentQuizzQuestion extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_quizz_question, container, false);
         unbinder = ButterKnife.bind(this, view);
-
-
         return view;
     }
 

@@ -21,7 +21,18 @@ public class Quiz {
     private int percentage;
     private int grade;
     private int hour = 0;
-    private int minute = 1;
+    private int minute = 15;
+
+    private List<AttemptedQuiz> AttemptedQuiz ;
+
+    public List<com.example.android.quizzy.model.AttemptedQuiz> getAttemptedQuiz() {
+        return AttemptedQuiz;
+    }
+
+    public void setAttemptedQuiz(List<com.example.android.quizzy.model.AttemptedQuiz> attemptedQuiz) {
+        AttemptedQuiz = attemptedQuiz;
+    }
+
     public Quiz() {
     }
 

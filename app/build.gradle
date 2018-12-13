@@ -5,11 +5,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.android.quizzy"
         minSdkVersion 19
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -34,43 +34,44 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger_version"
     implementation "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.github.FrangSierra:RxFirebase:$rxfirebase_version"
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:customtabs:27.1.1'
-    implementation 'com.android.support:cardview-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation "com.android.support:design:$support_lib"
+    implementation "com.android.support:customtabs:$support_lib"
+    implementation "com.android.support:cardview-v7:$support_lib"
+    implementation "com.android.support.constraint:constraint-layout:1.1.3"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.android.support:multidex:$multidex_version"
     implementation "io.reactivex:rxjava:$rxjava_version"
     implementation "io.reactivex:rxandroid:$rxandroid_version"
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:support-media-compat:27.1.1'
-    implementation 'com.android.support:support-v4:27.1.1'
+    implementation "com.android.support:appcompat-v7:$support_lib"
+    implementation "com.android.support:support-media-compat:$support_lib"
+    implementation "com.android.support:support-v4:$support_lib"
     implementation "com.google.firebase:firebase-core:$firebase_version"
     implementation "com.google.firebase:firebase-auth:$firebase_version"
     implementation "com.google.firebase:firebase-database:$firebase_version"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.jakewharton:butterknife:8.8.1'
+    testImplementation "junit:junit:4.12"
+    androidTestImplementation "com.android.support.test:runner:1.0.2"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.2"
+    implementation "com.jakewharton:butterknife:8.8.1"
     annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
-    implementation 'com.balsikandar.android:crashreporter:1.0.9'
-    implementation 'org.greenrobot:eventbus:3.1.1'
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
-    implementation 'com.github.zurche:plain-pie:v0.2.9'
+    implementation "com.balsikandar.android:crashreporter:1.0.9"
+    implementation "org.greenrobot:eventbus:3.1.1"
+   // implementation "com.github.PhilJay:MPAndroidChart:v3.0.3"
+    implementation "com.github.zurche:plain-pie:v0.2.9"
 
-    // implementation 'com.intuit.ssp:ssp-android:1.0.6'
+    // implementation "com.intuit.ssp:ssp-android:1.0.6"
     implementation "com.google.android.gms:play-services-auth:$firebase_version"
-    implementation 'com.facebook.android:facebook-login:[4,5)'
+    implementation "com.facebook.android:facebook-login:[4,5)"
 
+    implementation "com.plattysoft.leonids:LeonidsLib:1.3.2"
 
-    implementation 'com.plattysoft.leonids:LeonidsLib:1.3.2'
+    implementation "com.github.apl-devs:appintro:v4.2.3"
+    implementation "com.github.Shashank02051997:FancyWalkthrough-Android:2.1"
+    //  implementation  "com.github.zagum:Android-SwitchIcon:1.3.8"
+    implementation "com.github.ybq:Android-SpinKit:1.2.0"
+    implementation "com.github.brkckr:CircularProgressBar:1.0.1"
+    implementation "com.github.zcweng:switch-button:0.0.3@aar"
 
-    implementation 'com.github.apl-devs:appintro:v4.2.3'
-    implementation 'com.github.Shashank02051997:FancyWalkthrough-Android:2.1'
-  //  implementation  'com.github.zagum:Android-SwitchIcon:1.3.8'
-    implementation 'com.github.ybq:Android-SpinKit:1.2.0'
-    implementation 'com.github.brkckr:CircularProgressBar:1.0.1'
-    implementation 'com.github.zcweng:switch-button:0.0.3@aar'
+    implementation "com.github.AnyChart:AnyChart-Android:1.0.6"
 }
 
 apply plugin: 'com.google.gms.google-services'

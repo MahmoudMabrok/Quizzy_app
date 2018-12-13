@@ -10,11 +10,45 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/default16_margin"
         tools:context=".fragment.StudentReports">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default16_margin"
+            android:background="@drawable/item_back"
+            android:gravity="center_horizontal"
+            android:text="Quizz States"
+            android:textSize="22sp" />
+
+        <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit_NoDataToShow"
+            style="@style/SpinKitView.Large.Circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/default16_margin"
+            app:SpinKit_Color="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/tvNoDataToShow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/default16_margin"
+            android:layout_marginBottom="@dimen/default16_margin"
+            android:gravity="center"
+            android:text="No Data To Show"
+            android:textSize="30sp"
+            android:visibility="gone" />
+
+        <com.anychart.AnyChartView
+            android:id="@+id/chartQuizzes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="match_parent"
@@ -22,29 +56,36 @@
             android:layout_marginBottom="@dimen/default16_margin"
             android:background="@drawable/item_back"
             android:gravity="center_horizontal"
-            android:text="Distribution Quizz"
+            android:text="Grades"
             android:textSize="22sp" />
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/piQuizzStudent"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginBottom="@dimen/default16_margin" />
+        <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit_NoDataToShowGrades"
+            style="@style/SpinKitView.Large.Circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/default16_margin"
+            app:SpinKit_Color="@color/colorPrimary" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/tvNoDataToShowGrades"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/default16_margin"
             android:layout_marginBottom="@dimen/default16_margin"
-            android:background="@drawable/item_back"
-            android:gravity="center_horizontal"
-            android:text="Distribution Grades"
-            android:textSize="22sp" />
+            android:gravity="center"
+            android:text="No Data To Show"
+            android:textSize="30sp"
+            android:visibility="gone" />
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/piQuizzStudentGrades"
+        <com.anychart.AnyChartView
+            android:id="@+id/chartGrades"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginBottom="@dimen/default16_margin" />
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,7 +99,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/item_back"
                 android:gravity="center"
-                android:text="Average Value " />
+                android:layout_marginEnd="@dimen/default16_margin"
+                android:text="Average Value "/>
 
             <TextView
                 android:id="@+id/tvAverageValueStudent"
@@ -81,7 +123,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/item_back"
                 android:gravity="center"
-                android:text="Max Grade ☺☺☺" />
+                android:layout_marginEnd="@dimen/default16_margin"
+                android:text="Max Grade " />
 
             <TextView
                 android:id="@+id/tvmaxValueStudent"
@@ -105,7 +148,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/item_back"
                 android:gravity="center"
-                android:text="Min Grade ☹☹☹" />
+                android:layout_marginEnd="@dimen/default16_margin"
+                android:text="Min Grade"/>
 
             <TextView
                 android:id="@+id/tvminValueStudent"

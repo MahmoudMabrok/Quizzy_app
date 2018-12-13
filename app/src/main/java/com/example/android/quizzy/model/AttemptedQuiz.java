@@ -9,11 +9,19 @@ import java.util.List;
 @Keep
 public class AttemptedQuiz {
     boolean state;
+    private String StudentUUID;
     private String studentName;
     private int grade;
     private int percentage;
     private List<Question> questionArrayList;
 
+    public String getStudentUUID() {
+        return StudentUUID;
+    }
+
+    public void setStudentUUID(String studentUUID) {
+        StudentUUID = studentUUID;
+    }
 
     public int getPercentage() {
         return percentage;
