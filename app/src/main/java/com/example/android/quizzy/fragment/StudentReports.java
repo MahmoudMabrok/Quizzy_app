@@ -55,10 +55,7 @@ public class StudentReports extends Fragment {
     TextView tvNoDataToShow;
     @BindView(R.id.chartQuizzes)
     AnyChartView chartQuizzes;
-    @BindView(R.id.spin_kit_NoDataToShowGrades)
-    SpinKitView spinKitNoDataToShowGrades;
-    @BindView(R.id.tvNoDataToShowGrades)
-    TextView tvNoDataToShowGrades;
+
     @BindView(R.id.tvAverageValueStudent)
     TextView tvAverageValueStudent;
     private ArrayList<Quiz> completedList = new ArrayList<>();
@@ -180,7 +177,6 @@ public class StudentReports extends Fragment {
                     completedList = new ArrayList<>(list);
                     Log.d(TAG, "onDataChange: " + " complete list " + completedList.size());
                     spinKitNoDataToShow.setVisibility(View.GONE);
-                    spinKitNoDataToShowGrades.setVisibility(View.GONE);
                     if (completedList.size() > 0) {
                         Log.d(TAG, "onDataChange: " + 3);
                         loadedState();
@@ -201,19 +197,13 @@ public class StudentReports extends Fragment {
     }
 
     private void loadedState() {
-        // chartGrades.setVisibility(View.VISIBLE);
         chartQuizzes.setVisibility(View.VISIBLE);
-
         tvNoDataToShow.setVisibility(View.GONE);
-        tvNoDataToShowGrades.setVisibility(View.GONE);
     }
 
     private void noDataState() {
-        // chartGrades.setVisibility(View.GONE);
         chartQuizzes.setVisibility(View.GONE);
-
         tvNoDataToShow.setVisibility(View.VISIBLE);
-        tvNoDataToShowGrades.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -286,7 +276,7 @@ public class StudentReports extends Fragment {
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
         cartesian.interactivity().hoverMode(HoverMode.BY_X);
         cartesian.xAxis(0).title("Quiz Name");
-        cartesian.yAxis(0).title("%");
+        cartesian.yAxis(0).title("% (max is 100 )");
         chartQuizzes.setChart(cartesian);
 
     }

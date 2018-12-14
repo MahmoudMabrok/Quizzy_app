@@ -13,5 +13,10 @@
             android:icon="@drawable/chart2"
             android:title="Reports" />
 
+        <item
+            android:id="@+id/nav_award"
+            android:icon="@drawable/medal1"
+            android:title="Awards" />
+
     </group>
 </menu>

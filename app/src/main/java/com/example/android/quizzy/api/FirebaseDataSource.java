@@ -106,4 +106,8 @@ public class FirebaseDataSource {
         String key = teacherRef.child(award.getTeacherUUID()).child(Constants.AWERD_KEY).child(award.getQuizzID()).push().getKey();
         teacherRef.child(award.getTeacherUUID()).child(Constants.AWERD_KEY).child(award.getQuizzID()).child(key).setValue(award);
     }
+
+    public DatabaseReference getAwradRef(String teacherUUID) {
+        return teacherRef.child(teacherUUID).child(Constants.AWERD_KEY);
+    }
 }

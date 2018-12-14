@@ -14,9 +14,5 @@
             android:icon="@drawable/chart2"
             android:title="Reports" />
 
-        <item
-            android:id="@+id/nav_notification"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Notification" />
     </group>
 </menu>

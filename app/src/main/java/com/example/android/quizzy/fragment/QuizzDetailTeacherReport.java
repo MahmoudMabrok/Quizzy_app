@@ -83,7 +83,7 @@ public class QuizzDetailTeacherReport extends Fragment implements OnQuizzReportC
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_quizz_detail_teacher_report, container, false);
-        teacherUUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        //  teacherUUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //// TODO: 12/14/2018 to replace when integrate
         teacherUUID = "011";
         unbinder = ButterKnife.bind(this, view);
@@ -129,29 +129,34 @@ public class QuizzDetailTeacherReport extends Fragment implements OnQuizzReportC
 
     @OnClick(R.id.btnCalacurtBest)
     public void onViewClicked() {
-        List<Integer> list = new ArrayList<>();
-        List<Item> itemList = new ArrayList<>();
-        for (AttemptedQuiz quiz : data.getAttemptedQuizList()) {
-            Item element = new Item(quiz.getStudentUUID(), quiz.getStudentName(), quiz.getPercentage());
-            itemList.add(element);
-            list.add(quiz.getPercentage());
-        }
-        int max = Collections.max(list);
-        Log.d(TAG, "onViewClicked: " + max);
-        List<Award> awards = new ArrayList<>();
-        Award award;
-        for (Item item : itemList) {
-            if (item.percentage == max) {
-                award = new Award();
-                award.setQuizzID(quizzID);
-                award.setQuizzName(quizzName);
-                award.setTeacherUUID(teacherUUID);
-                award.setStudentName(item.studentName);
-                award.setStudentUUID(item.studentUUID);
-                repo.addAward(award);
-
-                show(item.studentName);
+        if (data.getAttemptedQuizList().size() > 0) {
+            List<Integer> list = new ArrayList<>();
+            List<Item> itemList = new ArrayList<>();
+            for (AttemptedQuiz quiz : data.getAttemptedQuizList()) {
+                Item element = new Item(quiz.getStudentUUID(), quiz.getStudentName(), quiz.getPercentage());
+                itemList.add(element);
+                list.add(quiz.getPercentage());
             }
+            Collections.sort(list);
+            int max = list.get(list.size() - 1);
+            Log.d(TAG, "onViewClicked: " + max);
+            List<Award> awards = new ArrayList<>();
+            Award award;
+            for (Item item : itemList) {
+                if (item.percentage == max) {
+                    award = new Award();
+                    award.setQuizzID(quizzID);
+                    award.setQuizzName(quizzName);
+                    award.setTeacherUUID(teacherUUID);
+                    award.setStudentName(item.studentName);
+                    award.setStudentUUID(item.studentUUID);
+                    repo.addAward(award);
+
+                    show(item.studentName);
+                }
+            }
+        } else {
+            show("No Student Complete a Quiz ");
         }
 
     }

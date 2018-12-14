@@ -70,4 +70,8 @@ public class DataRepo {
     public void addAward(Award award) {
         firebaseDataSource.addAward(award);
     }
+
+    public DatabaseReference getAwradRef(String teacherUUID) {
+        return firebaseDataSource.getAwradRef(teacherUUID);
+    }
 }
