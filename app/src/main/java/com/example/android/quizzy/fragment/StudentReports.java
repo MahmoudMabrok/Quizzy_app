@@ -94,7 +94,7 @@ public class StudentReports extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         dataRepo = new DataRepo();
         retriveQuizzList(teacherID);
-        retriveCompletedList(studentUUID);
+        //   retriveCompletedList(studentUUID);
         return view;
     }
 
@@ -139,13 +139,14 @@ public class StudentReports extends Fragment {
                         Quiz temp;
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             temp = snapshot.getValue(Quiz.class);
-                            if (temp != null) {
+                            if (temp != null && temp.isShown()) {
                                 list.add(temp);
                             }
                         }
-                        if (list.size() > 0) {
-                            quizList = new ArrayList<>(list);
-                        }
+                        //if (list.size() > 0) {
+                        quizList = new ArrayList<>(list);
+                        retriveCompletedList(studentUUID);
+                        //}
                     }
 
                     @Override
@@ -169,22 +170,17 @@ public class StudentReports extends Fragment {
                     }
                 }
                 completedList = new ArrayList<>(list);
-                if (chartGrades != null) {
-                    spinKitNoDataToShow.setVisibility(View.GONE);
-                    spinKitNoDataToShowGrades.setVisibility(View.GONE);
-                    if (completedList.size() > 0) {
-                        loadedState();
-                        computeDistributionGrades();
-                        computeDistributionQuizzes();
-                        comptueParamter();
-                    } else {
-                        noDataState();
-                    }
-
-
+                Log.d(TAG, "onDataChange: " + " complete list " + completedList.size());
+                spinKitNoDataToShow.setVisibility(View.GONE);
+                spinKitNoDataToShowGrades.setVisibility(View.GONE);
+                if (completedList.size() > 0) {
+                    loadedState();
+                    computeDistributionGrades();
+                    computeDistributionQuizzes();
+                    comptueParamter();
+                } else {
+                    noDataState();
                 }
-
-
             }
 
             @Override
@@ -226,7 +222,6 @@ public class StudentReports extends Fragment {
         Log.d(TAG, "computeDistributionGrades: " + completedList.size());
         na = quizList.size() - (success + falid);
         int[] values = new int[]{success, falid, na};
-
         Cartesian cartesian = AnyChart.column();
         List<DataEntry> data = new ArrayList<>();
         for (int i = 0; i < values.length; i++) {
@@ -259,6 +254,29 @@ public class StudentReports extends Fragment {
      * represnt all Quizzes State
      */
     private void computeDistributionQuizzes() {
+        Cartesian cartesian = AnyChart.column();
+        List<DataEntry> data = new ArrayList<>();
+        for (Quiz quiz : completedList) {
+            data.add(new ValueDataEntry(quiz.getName(), quiz.getPercentage()));
+        }
+        Column column = cartesian.column(data);
+        column.tooltip()
+                .titleFormat("{%X}")
+                .position(Position.CENTER_BOTTOM)
+                .anchor(Anchor.CENTER_BOTTOM)
+                .offsetX(0d)
+                .offsetY(5d)
+                .format("{%Value}{groupsSeparator: }");
+        cartesian.animation(true);
+        cartesian.title("Quizz Grades");
+        cartesian.yScale().minimum(0d);
+        cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }");
+        cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
+        cartesian.interactivity().hoverMode(HoverMode.BY_X);
+        cartesian.xAxis(0).title("Quiz Name");
+        cartesian.yAxis(0).title("%");
+        chartQuizzes.setChart(cartesian);
+
 
     }
 
