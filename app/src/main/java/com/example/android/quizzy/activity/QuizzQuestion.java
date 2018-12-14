@@ -149,6 +149,7 @@ public class QuizzQuestion extends AppCompatActivity {
     public void onViewClicked() {
         countTimer.cancel();
         AttemptedQuiz attemptedQuiz = new AttemptedQuiz();
+        //  attemptedQuiz.setQuizzName(quiz.getName());
         attemptedQuiz.setStudentUUID(sID);
         NotifactionItem notifactionItem = new NotifactionItem();
         notifactionItem.setQuizzName(quiz.getName());
@@ -210,10 +211,7 @@ public class QuizzQuestion extends AppCompatActivity {
         attemptedQuiz.setQuestionArrayList(questionList);
         repo.addQuizTOCompleteList(quiz, sID);
         repo.addAttemted(attemptedQuiz, quizeID, teacher);
-     //   repo.addNotification(teacher, notifactionItem);
-
         show("Quizz Solved ");
-
         new CountDownTimer(2000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -230,7 +228,6 @@ public class QuizzQuestion extends AppCompatActivity {
     private void finishActvityWithAnim() {
         finish();
         overridePendingTransition(R.anim.slide_up, R.anim.slide_down); // animation with finish the activity
-
     }
 
     private void show(String quizz_solved_) {

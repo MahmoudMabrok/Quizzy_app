@@ -8,12 +8,22 @@ import java.util.List;
 
 @Keep
 public class AttemptedQuiz {
+    private String quizzName;
     boolean state;
     private String StudentUUID;
     private String studentName;
     private int grade;
     private int percentage;
     private List<Question> questionArrayList;
+
+
+    public String getQuizzName() {
+        return quizzName;
+    }
+
+    public void setQuizzName(String quizzName) {
+        this.quizzName = quizzName;
+    }
 
     public String getStudentUUID() {
         return StudentUUID;

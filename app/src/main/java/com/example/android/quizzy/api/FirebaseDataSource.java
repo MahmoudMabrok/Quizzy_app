@@ -1,6 +1,7 @@
 package com.example.android.quizzy.api;
 
 import com.example.android.quizzy.model.AttemptedQuiz;
+import com.example.android.quizzy.model.Award;
 import com.example.android.quizzy.model.NotifactionItem;
 import com.example.android.quizzy.model.Quiz;
 import com.example.android.quizzy.util.Constants;
@@ -99,5 +100,14 @@ public class FirebaseDataSource {
 
     public DatabaseReference getStudentOfTeacherRef(String teacherKey) {
         return teacherRef.child(teacherKey).child(Constants.STUDENTS_KEY).getRef();
+    }
+
+    public void addAward(Award award) {
+        String key = teacherRef.child(award.getTeacherUUID()).child(Constants.AWERD_KEY).child(award.getQuizzID()).push().getKey();
+        teacherRef.child(award.getTeacherUUID()).child(Constants.AWERD_KEY).child(award.getQuizzID()).child(key).setValue(award);
+    }
+
+    public DatabaseReference getAwradRef(String teacherUUID) {
+        return teacherRef.child(teacherUUID).child(Constants.AWERD_KEY);
     }
 }

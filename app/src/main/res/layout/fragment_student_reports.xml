@@ -12,16 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/default16_margin"
         tools:context=".fragment.StudentReports">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/default16_margin"
-            android:background="@drawable/item_back"
+            android:background="@drawable/header_back"
             android:gravity="center_horizontal"
             android:text="Quizz States"
+            android:textColor="@color/white"
             android:textSize="22sp" />
 
         <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -42,50 +42,15 @@
             android:layout_marginBottom="@dimen/default16_margin"
             android:gravity="center"
             android:text="No Data To Show"
+            android:textColor="@color/white"
             android:textSize="30sp"
             android:visibility="gone" />
 
         <com.anychart.AnyChartView
             android:id="@+id/chartQuizzes"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default16_margin"
-            android:background="@drawable/item_back"
-            android:gravity="center_horizontal"
-            android:text="Grades"
-            android:textSize="22sp" />
-
-        <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/spin_kit_NoDataToShowGrades"
-            style="@style/SpinKitView.Large.Circle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/default16_margin"
-            app:SpinKit_Color="@color/colorPrimary" />
-
-        <TextView
-            android:id="@+id/tvNoDataToShowGrades"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/default16_margin"
-            android:layout_marginBottom="@dimen/default16_margin"
-            android:gravity="center"
-            android:text="No Data To Show"
-            android:textSize="30sp"
-            android:visibility="gone" />
-
-        <com.anychart.AnyChartView
-            android:id="@+id/chartGrades"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
+            android:layout_height="200dp"
+            android:layout_marginBottom="@dimen/default16_margin" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,19 +61,21 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/item_back"
-                android:gravity="center"
                 android:layout_marginEnd="@dimen/default16_margin"
-                android:text="Average Value "/>
+                android:layout_weight="1"
+                android:background="@drawable/header_back"
+                android:gravity="center"
+                android:text="Average Value "
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/tvAverageValueStudent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/item_back"
-                android:gravity="center" />
+                android:background="@drawable/header_back"
+                android:gravity="center"
+                android:textColor="@color/white" />
         </LinearLayout>
 
         <LinearLayout
@@ -120,21 +87,22 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/item_back"
-                android:gravity="center"
                 android:layout_marginEnd="@dimen/default16_margin"
-                android:text="Max Grade " />
+                android:layout_weight="1"
+                android:background="@drawable/header_back"
+                android:gravity="center"
+                android:text="Max Grade "
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/tvmaxValueStudent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/item_back"
-                android:gravity="center" />
+                android:background="@drawable/header_back"
+                android:gravity="center"
+                android:textColor="@color/white" />
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -145,19 +113,21 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/item_back"
-                android:gravity="center"
                 android:layout_marginEnd="@dimen/default16_margin"
-                android:text="Min Grade"/>
+                android:layout_weight="1"
+                android:background="@drawable/header_back"
+                android:gravity="center"
+                android:text="Min Grade"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/tvminValueStudent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/item_back"
-                android:gravity="center" />
+                android:background="@drawable/header_back"
+                android:gravity="center"
+                android:textColor="@color/white" />
         </LinearLayout>
 
 

@@ -140,9 +140,11 @@ public class ReportsTeacherFragment extends Fragment implements OnQuizzReportCli
                     AttemptedQuiz attemptedQuiz;
 
                     for (DataSnapshot quiz : dataSnapshot.getChildren()) { // for each quizz
-                 //       Quiz quiz1 = quiz.getValue(Quiz.class);
+                        Quiz quiz1 = quiz.getValue(Quiz.class);
                         data = new Data();
                         data.setQuizName((String) quiz.child(Constants.QUIZZ_NAME).getValue());
+                        //// TODO: 12/14/2018  quiz id
+                        data.setQuizID(quiz1.getKey());
                         quizzNames.add(data.getQuizName());
                         Log.d(TAG, "onDataChange: Quizz name " + data.getQuizName());
                         list = new ArrayList<>();
@@ -151,7 +153,6 @@ public class ReportsTeacherFragment extends Fragment implements OnQuizzReportCli
                             Log.d(TAG, "onDataChange: " + attemptedQuiz);
                             list.add(attemptedQuiz);
                         }
-
                         data.setAttemptedQuizList(list);
                         dataList.add(data);
                     }
@@ -297,6 +298,7 @@ public class ReportsTeacherFragment extends Fragment implements OnQuizzReportCli
     public void onClick(int pos) {
         Log.d(TAG, "onClick: " + pos);
         Data data = dataList.get(pos);
+        //// TODO: 12/14/2018  send data
         ((TeacherHome) getActivity()).openQuizzDetail(data);
 
     }

@@ -130,26 +130,12 @@ public class TeacherHome extends AppCompatActivity
                 openReports();
                 break;
 
-            case R.id.nav_notification:
-                openNotification();
-                break;
-
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private void openNotification() {
-        transition = manager.beginTransaction();
-        transition.setCustomAnimations(R.anim.slide_up, 0);
-        NotificationFragment teacher = new NotificationFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString(Constants.TEACHERS_KEY, key);
-        teacher.setArguments(bundle);
-
-        transition.replace(R.id.container, teacher).commit();
-    }
 
     private void openQuizzListFragment() {
         transition = manager.beginTransaction();

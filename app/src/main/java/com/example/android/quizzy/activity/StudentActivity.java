@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.android.quizzy.R;
 import com.example.android.quizzy.api.DataRepo;
+import com.example.android.quizzy.fragment.AwardFragment;
 import com.example.android.quizzy.fragment.StudentReports;
 import com.example.android.quizzy.fragment.student_quiz_list;
 import com.example.android.quizzy.util.Constants;
@@ -114,18 +115,6 @@ public class StudentActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private void openQuizzListFragment() {
-        transition = manager.beginTransaction();
-        transition.setCustomAnimations(R.anim.slide_up, 0);
-        student_quiz_list teacher = new student_quiz_list();
-        Bundle bundle = new Bundle();
-        bundle.putString(Constants.STUDENT_UUID , studentID);
-        bundle.putString(Constants.STUDENT_NAME, studentName);
-        bundle.putString(Constants.STUDENT_Teacher_uuid, teacherUUID);
-        teacher.setArguments(bundle);
-        transition.replace(R.id.containerStudent, teacher).commit();
-       // transition.addToBackStack(student_quiz_list.TAG);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -140,11 +129,38 @@ public class StudentActivity extends AppCompatActivity
             case R.id.nav_reorts:
                 openReports();
                 break;
+            case R.id.nav_award:
+                openAward();
+                break;
 
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void openQuizzListFragment() {
+        transition = manager.beginTransaction();
+        transition.setCustomAnimations(R.anim.slide_up, 0);
+        student_quiz_list teacher = new student_quiz_list();
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.STUDENT_UUID, studentID);
+        bundle.putString(Constants.STUDENT_NAME, studentName);
+        bundle.putString(Constants.STUDENT_Teacher_uuid, teacherUUID);
+        teacher.setArguments(bundle);
+        transition.replace(R.id.containerStudent, teacher).commit();
+        //  transition.addToBackStack(student_quiz_list.TAG);
+    }
+
+
+    private void openAward() {
+        transition = manager.beginTransaction();
+        AwardFragment awardFragment = new AwardFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.TEACHER_TELEPHONE_NUMBER_KEY, teacherUUID);
+        awardFragment.setArguments(bundle);
+        transition.replace(R.id.containerStudent, awardFragment).commit();
+        transition.addToBackStack(null);
     }
 
     private void openReports() {
@@ -156,7 +172,7 @@ public class StudentActivity extends AppCompatActivity
         bundle.putString(Constants.STUDENT_UUID, studentID);
         studentReports.setArguments(bundle);
         transition.replace(R.id.containerStudent, studentReports).commit();
-     //   transition.addToBackStack(StudentReports.TAG);
+        transition.addToBackStack(StudentReports.TAG);
     }
 
 
@@ -177,13 +193,13 @@ public class StudentActivity extends AppCompatActivity
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-           /* if (getFragmentManager().getBackStackEntryCount() > 1) {
-                getFragmentManager().popBackStack();
+            if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+                getSupportFragmentManager().popBackStack();
             } else {
                 super.onBackPressed();
-            }*/
+            }
 
-            super.onBackPressed();
+            //      super.onBackPressed();
         }
     }
 

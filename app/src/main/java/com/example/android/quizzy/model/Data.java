@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Data implements Serializable {
 
+    private String quizID;
     private String quizName;
     private int fails;
     private int success;
@@ -12,6 +13,13 @@ public class Data implements Serializable {
     private List<AttemptedQuiz> attemptedQuizList;
     private String topStudent;
 
+    public String getQuizID() {
+        return quizID;
+    }
+
+    public void setQuizID(String quizID) {
+        this.quizID = quizID;
+    }
 
     public int getFails() {
         return fails;
