@@ -1,6 +1,7 @@
 package com.example.android.quizzy.api;
 
 import com.example.android.quizzy.model.AttemptedQuiz;
+import com.example.android.quizzy.model.Award;
 import com.example.android.quizzy.model.NotifactionItem;
 import com.example.android.quizzy.model.Quiz;
 import com.google.firebase.database.DatabaseReference;
@@ -64,5 +65,9 @@ public class DataRepo {
 
     public DatabaseReference getStudentOfTeacherRef(String teacherKey) {
         return firebaseDataSource.getStudentOfTeacherRef(teacherKey);
+    }
+
+    public void addAward(Award award) {
+        firebaseDataSource.addAward(award);
     }
 }

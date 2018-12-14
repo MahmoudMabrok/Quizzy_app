@@ -55,6 +55,7 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
         final Question question = questionList.get(position);
         holder.tvQuestionTitle.setText(question.getQuestion());
         //handle radio group
+/*
         RadioButton radioButton;
         List<String> list = question.getAnswerList();
         int c = 0;
@@ -88,10 +89,11 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
             show("not " + question.getSelectedID()) ;
             holder.radioGroup.check(question.getSelectedID());
         }
+*/
 
 
         //handle spinner
- /*       ArrayAdapter<String> adapter = new ArrayAdapter<>(holder.itemView.getContext(), android.R.layout.simple_dropdown_item_1line, question.getAnswerList());
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(holder.itemView.getContext(), android.R.layout.simple_dropdown_item_1line, question.getAnswerList());
         holder.spAnswerList.setAdapter(adapter);
         holder.spAnswerList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -106,8 +108,8 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });*/
-        // holder.spAnswerList.setEnabled(true);
+        });
+        holder.spAnswerList.setEnabled(true);
 
 
         //case solved quizz
@@ -116,10 +118,8 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
         if (answer != null) {
             int pos = question.getAnswerList().indexOf(answer);
             Log.d(TAG, "onBindViewHolder:  pos" + pos);
-            holder.radioGroup.check(pos);
-            //  holder.radioGroup.setEnabled(false);
-            Log.d(TAG, "onBindViewHolder: 1x  " + holder.radioGroup.isEnabled());
-            Log.d(TAG, "onBindViewHolder: 1XX " + question.isState());
+            //    holder.radioGroup.check(pos);
+            holder.spAnswerList.setSelection(pos);
             if (question.getCorrectAnswer().equals(answer)) {
                 holder.stateOK.setVisibility(View.VISIBLE);
                 holder.stateOFF.setVisibility(View.GONE);

@@ -134,7 +134,7 @@
                 android:gravity="center"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Percentage"
+                android:text="%"
                 android:textSize="18sp"
                 android:layout_marginRight="@dimen/margine_right_item"
                 android:layout_marginEnd="@dimen/margine_right_item" />
@@ -162,7 +162,16 @@
             android:id="@+id/rvReportStudentDetailTeacher"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:layout_marginTop="@dimen/default16_margin" />
+            android:layout_marginTop="@dimen/default16_margin"
+            android:layout_marginBottom="@dimen/default16_margin" />
+
+        <Button
+            android:id="@+id/btnCalacurtBest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/button"
+            android:text="Calculate Best Performers" />
 
 
     </LinearLayout>

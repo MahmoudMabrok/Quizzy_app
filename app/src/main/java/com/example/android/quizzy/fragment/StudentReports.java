@@ -44,7 +44,6 @@ import butterknife.Unbinder;
  */
 public class StudentReports extends Fragment {
     public static final String TAG = "StudentReports";
-    TextView tvAverageValueStudent;
     @BindView(R.id.tvmaxValueStudent)
     TextView tvmaxValueStudent;
     @BindView(R.id.tvminValueStudent)
@@ -60,8 +59,8 @@ public class StudentReports extends Fragment {
     SpinKitView spinKitNoDataToShowGrades;
     @BindView(R.id.tvNoDataToShowGrades)
     TextView tvNoDataToShowGrades;
-    @BindView(R.id.chartGrades)
-    AnyChartView chartGrades;
+    @BindView(R.id.tvAverageValueStudent)
+    TextView tvAverageValueStudent;
     private ArrayList<Quiz> completedList = new ArrayList<>();
     private DataRepo dataRepo;
     private ArrayList<Quiz> quizList = new ArrayList<>();
@@ -93,9 +92,14 @@ public class StudentReports extends Fragment {
         View view = inflater.inflate(R.layout.fragment_student_reports, container, false);
         unbinder = ButterKnife.bind(this, view);
         dataRepo = new DataRepo();
+        loadState();
         retriveQuizzList(teacherID);
-        //   retriveCompletedList(studentUUID);
         return view;
+    }
+
+    private void loadState() {
+        chartQuizzes.setVisibility(View.GONE);
+        // chartGrades.setVisibility(View.GONE);
     }
 
 
@@ -107,7 +111,7 @@ public class StudentReports extends Fragment {
             list.add(quiz.getPercentage());
             avg += quiz.getPercentage();
         }
-        Log.d(TAG, "comptueParamter: " + list.size());
+        Log.d(TAG, "onDataChange : comptueParamter --  " + list.size());
         if (list.size() > 0) {
             max = Collections.max(list);
             Log.d(TAG, "comptueParamter:  max " + max);
@@ -116,6 +120,7 @@ public class StudentReports extends Fragment {
         }
 
         if (tvAverageValueStudent != null) {
+            Log.d(TAG, "onDataChange  :: comptueParamter: " + "not null ");
             tvAverageValueStudent.setText(avg + " %");
             tvmaxValueStudent.setText(max + " %");
             tvminValueStudent.setText(min + " %");
@@ -135,6 +140,7 @@ public class StudentReports extends Fragment {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Log.d(TAG, "onDataChange: " + dataSnapshot);
+                        Log.d(TAG, "onDataChange: " + 1);
                         List<Quiz> list = new ArrayList<>();
                         Quiz temp;
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -160,26 +166,30 @@ public class StudentReports extends Fragment {
         dataRepo.getCompleteListRef(teacherID, studentUUID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d(TAG, "onDataChange:  completeList" + dataSnapshot);
-                List<Quiz> list = new ArrayList<>();
-                Quiz temp;
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    temp = snapshot.getValue(Quiz.class);
-                    if (temp != null) {
-                        list.add(temp);
+                if (isResumed()) {
+                    // Log.d(TAG, "onDataChange:  completeList" + dataSnapshot);
+                    Log.d(TAG, "onDataChange: " + 2);
+                    List<Quiz> list = new ArrayList<>();
+                    Quiz temp;
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        temp = snapshot.getValue(Quiz.class);
+                        if (temp != null) {
+                            list.add(temp);
+                        }
                     }
-                }
-                completedList = new ArrayList<>(list);
-                Log.d(TAG, "onDataChange: " + " complete list " + completedList.size());
-                spinKitNoDataToShow.setVisibility(View.GONE);
-                spinKitNoDataToShowGrades.setVisibility(View.GONE);
-                if (completedList.size() > 0) {
-                    loadedState();
-                    computeDistributionGrades();
-                    computeDistributionQuizzes();
-                    comptueParamter();
-                } else {
-                    noDataState();
+                    completedList = new ArrayList<>(list);
+                    Log.d(TAG, "onDataChange: " + " complete list " + completedList.size());
+                    spinKitNoDataToShow.setVisibility(View.GONE);
+                    spinKitNoDataToShowGrades.setVisibility(View.GONE);
+                    if (completedList.size() > 0) {
+                        Log.d(TAG, "onDataChange: " + 3);
+                        loadedState();
+                        //computeDistributionGrades();
+                        computeDistributionQuizzes();
+                        comptueParamter();
+                    } else {
+                        noDataState();
+                    }
                 }
             }
 
@@ -191,7 +201,7 @@ public class StudentReports extends Fragment {
     }
 
     private void loadedState() {
-        chartGrades.setVisibility(View.VISIBLE);
+        // chartGrades.setVisibility(View.VISIBLE);
         chartQuizzes.setVisibility(View.VISIBLE);
 
         tvNoDataToShow.setVisibility(View.GONE);
@@ -199,7 +209,7 @@ public class StudentReports extends Fragment {
     }
 
     private void noDataState() {
-        chartGrades.setVisibility(View.GONE);
+        // chartGrades.setVisibility(View.GONE);
         chartQuizzes.setVisibility(View.GONE);
 
         tvNoDataToShow.setVisibility(View.VISIBLE);
@@ -227,6 +237,7 @@ public class StudentReports extends Fragment {
         for (int i = 0; i < values.length; i++) {
             data.add(new ValueDataEntry(labels[i], values[i]));
         }
+
         Column column = cartesian.column(data);
         column.tooltip()
                 .titleFormat("{%X}")
@@ -243,7 +254,7 @@ public class StudentReports extends Fragment {
         cartesian.interactivity().hoverMode(HoverMode.BY_X);
         cartesian.xAxis(0).title("Grade Frequents");
         cartesian.yAxis(0).title("Count");
-        chartGrades.setChart(cartesian);
+        // chartGrades.setChart(cartesian);
     }
 
     private void show(String m) {
@@ -251,7 +262,7 @@ public class StudentReports extends Fragment {
     }
 
     /**
-     * represnt all Quizzes State
+     * represent all Quizzes State
      */
     private void computeDistributionQuizzes() {
         Cartesian cartesian = AnyChart.column();
@@ -259,6 +270,7 @@ public class StudentReports extends Fragment {
         for (Quiz quiz : completedList) {
             data.add(new ValueDataEntry(quiz.getName(), quiz.getPercentage()));
         }
+
         Column column = cartesian.column(data);
         column.tooltip()
                 .titleFormat("{%X}")
@@ -268,7 +280,7 @@ public class StudentReports extends Fragment {
                 .offsetY(5d)
                 .format("{%Value}{groupsSeparator: }");
         cartesian.animation(true);
-        cartesian.title("Quizz Grades");
+        cartesian.title("Quizz Performance ");
         cartesian.yScale().minimum(0d);
         cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }");
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
@@ -276,7 +288,6 @@ public class StudentReports extends Fragment {
         cartesian.xAxis(0).title("Quiz Name");
         cartesian.yAxis(0).title("%");
         chartQuizzes.setChart(cartesian);
-
 
     }
 
