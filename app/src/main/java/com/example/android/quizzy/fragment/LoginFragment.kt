@@ -1,5 +1,6 @@
 package com.example.android.quizzy.fragment
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -155,7 +156,7 @@ class LoginFragment : Fragment() {
 
     fun setClickRegisterOnClickListener(){
         click_register_text_view.setOnClickListener{
-            transient.openFragment(RegisterFragment())
+            transient.openFragment(this, RegisterFragment())
         }
     }
 
@@ -170,7 +171,7 @@ class LoginFragment : Fragment() {
     }
 
     interface LoginTransitionInterface{
-        fun openFragment(fragment : Fragment)
+        fun openFragment(caller: Any, fragment : Fragment)
     }
 
     private fun setGoogleLoginButtonOnClickListener() {
