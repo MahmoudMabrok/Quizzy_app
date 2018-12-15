@@ -87,17 +87,14 @@ Quizzy provides several features including:
 ## Screenshots
 * Walkthrough<br />
 ![Walkthrough GIF](https://github.com/MahmoudMabrok/Quizzy_app/blob/master/20181215_163439.gif)
-![ScreenShot 1](https://github.com/MahmoudMabrok/Quizzy_app/blob/master/Screenshots/Screenshot_20181215-223541.png)
-![ScreenShot 1](https://github.com/MahmoudMabrok/Quizzy_app/blob/master/Screenshots/Screenshot_20181215-223606.png)
-![ScreenShot 1](https://github.com/MahmoudMabrok/Quizzy_app/blob/master/Screenshots/Screenshot_20181215-223637.png)
-![ScreenShot 1](https://github.com/MahmoudMabrok/Quizzy_app/blob/master/Screenshots/Screenshot_20181215-224556.png)
-![ScreenShot 1](https://github.com/MahmoudMabrok/Quizzy_app/blob/master/Screenshots/Screenshot_20181215-224606.png)
-![ScreenShot 1](https://github.com/MahmoudMabrok/Quizzy_app/blob/master/Screenshots/Screenshot_20181215-224616.png)
 * Login/Register
-* Teacher Home
-* Student Home
+* Teacher Home <br />
+![ScreenShot 1](https://github.com/MahmoudMabrok/Quizzy_app/blob/master/Screenshots/Screenshot_20181215-223603.png)
+* Student Home <br />
 * Creating Quiz by Teacher
-* Accessing Quiz by Student
-* Reports for Teacher
+* Accessing Quiz by Student<br />
+![ScreenShot 1](https://github.com/MahmoudMabrok/Quizzy_app/blob/master/Screenshots/Screenshot_20181215-224606.png)
+* Reports for Teacher<br />
+![ScreenShot 1](https://github.com/MahmoudMabrok/Quizzy_app/blob/master/Screenshots/Screenshot_20181215-223541.png)
 * Reports for Student
 * Rewards
