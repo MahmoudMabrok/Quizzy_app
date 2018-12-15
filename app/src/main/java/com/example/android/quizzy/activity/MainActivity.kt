@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         if (FirebaseAuth.getInstance().currentUser == null) {
             Log.d(TAG, "there is no firebase user")
             val intent = Intent(applicationContext, WalkThroughActivty::class.java)
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
         } else {
             Log.d(TAG, "there is firebase user")
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             var gotStudentName: String?
 
             //check if shared preferences has values
-            val sharedPref = getPreferences(Context.MODE_PRIVATE)
+            val sharedPref = getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE)
             if (sharedPref.contains(Constants.TELEPHONE_NUMBER_KEY)) { //teacher logged before
                 Log.d(TAG, "shared pref contains telephone number key")
                 gotTeacherNumber = sharedPref.getString(Constants.TELEPHONE_NUMBER_KEY, null)
@@ -54,8 +54,8 @@ class MainActivity : AppCompatActivity() {
                     gotTeacherNumber = intent.extras[Constants.TELEPHONE_NUMBER_KEY] as String
                     gotTeacherName = intent.extras[Constants.TEACHER_NAME] as String
                     //store at shared preferences
-                    getPreferences(Context.MODE_PRIVATE).edit().putString(Constants.TELEPHONE_NUMBER_KEY, gotTeacherNumber).apply()
-                    getPreferences(Context.MODE_PRIVATE).edit().putString(Constants.TEACHER_NAME, gotTeacherNumber).apply()
+                    getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE).edit().putString(Constants.TELEPHONE_NUMBER_KEY, gotTeacherNumber).apply()
+                    getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE).edit().putString(Constants.TEACHER_NAME, gotTeacherNumber).apply()
                     //Navigate to Teacher activity
                     moveToTeacherActivity(gotTeacherNumber, gotTeacherName)
                 }
@@ -66,8 +66,8 @@ class MainActivity : AppCompatActivity() {
                     gotTeacherNumber = intent.extras[Constants.TEACHER_TELEPHONE_NUMBER_KEY] as String
                     gotStudentName = intent.extras[Constants.STUDENT_NAME_KEY] as String
                     //store at shared preferences
-                    getPreferences(Context.MODE_PRIVATE).edit().putString(Constants.TEACHER_TELEPHONE_NUMBER_KEY, gotTeacherNumber).apply()
-                    getPreferences(Context.MODE_PRIVATE).edit().putString(Constants.STUDENT_NAME_KEY, gotStudentName).apply()
+                    getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE).edit().putString(Constants.TEACHER_TELEPHONE_NUMBER_KEY, gotTeacherNumber).apply()
+                    getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE).edit().putString(Constants.STUDENT_NAME_KEY, gotStudentName).apply()
                     //Navigate to Student activity
                     moveToStudentActivity(gotTeacherNumber, gotStudentName)
                 }
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, TeacherHome::class.java)
         intent.putExtra(Constants.TELEPHONE_NUMBER_KEY, telephoneNumber)
         intent.putExtra(Constants.TEACHER_NAME, name)
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }
 
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, StudentActivity::class.java)
         intent.putExtra(Constants.TEACHER_TELEPHONE_NUMBER_KEY, teacherTelephoneNumber)
         intent.putExtra(Constants.STUDENT_NAME_KEY, studentName)
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }
 }

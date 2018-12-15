@@ -57,6 +57,8 @@ public interface Constants {
     String Quizz_id = "id";
     String TEACHER_NAME = "teacherName";
 
+    String SHARED_PREFERENCES = "shared_pref";
+
     public static final int RC_SIGN_IN = 1;
     String NO_ACCOUNT = "No account found";
     String AWERD_KEY = "Awards";

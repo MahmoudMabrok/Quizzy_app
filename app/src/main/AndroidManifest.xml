@@ -17,16 +17,15 @@
         <activity
             android:name=".activity.MainActivity"
             android:theme="@style/Splash_theme">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".activity.LoginActivity"
             android:theme="@style/Login_theme"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:screenOrientation="portrait"
