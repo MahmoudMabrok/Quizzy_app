@@ -20,14 +20,14 @@ One of the most important activities in the process of education is evaluation. 
 ## Related work
 There are many tools that are dedicated to provide a powerful and collaborative learning environment which are known as LMSs (Learning Management Systems) . Here, we investigate only one of these systems which is **Moodle**.
 
-### Moodle
-#### Features
+#### Moodle
+**Features**
 * Provides a full-fledged, collaborative learning environment.
 * Provides a smart android app for student.
 * Can import quizzes or entire courses from Blackboard or WebCT.
 * Student can download course contents, quizzes and access them offline but with less functionality of online access.
 
-#### Limitations
+**Limitations**
 * Administration is overwhelming and not user-friendly.
 * Technical skills are needed to use the system.
 
