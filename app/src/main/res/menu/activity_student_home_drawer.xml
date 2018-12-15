@@ -7,14 +7,17 @@
         <item
             android:id="@+id/nav_quiz"
             android:icon="@drawable/list2"
+            android:iconTint="@color/white"
             android:title="Quizz List" />
         <item
             android:id="@+id/nav_reorts"
+            android:iconTint="@color/white"
             android:icon="@drawable/chart2"
             android:title="Reports" />
 
         <item
             android:id="@+id/nav_award"
+            android:iconTint="@color/white"
             android:icon="@drawable/medal1"
             android:title="Awards" />
 

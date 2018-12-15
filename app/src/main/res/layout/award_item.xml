@@ -14,18 +14,20 @@
         <TextView
             android:id="@+id/tvQuizzNameAWARD"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="30sp" />
+            android:text="QQQQQ"
+            android:textSize="@dimen/_20ssp" />
 
         <TextView
             android:id="@+id/tvStudentNameAWARD"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:gravity="center"
-            android:textSize="30sp" />
+            android:text="Mahmoud"
+            android:textSize="@dimen/_25ssp" />
 
         <ImageView
             android:layout_width="0dp"

@@ -19,7 +19,10 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_teacher_home"
+        android:background="@color/colorPrimary"
+        app:headerLayout="@layout/nav_header_student"
+        app:itemTextAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+        app:itemTextColor="@color/white"
         app:menu="@menu/activity_student_home_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

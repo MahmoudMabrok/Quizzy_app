@@ -59,7 +59,7 @@ dependencies {
     // implementation "com.github.PhilJay:MPAndroidChart:v3.0.3"
     implementation "com.github.zurche:plain-pie:v0.2.9"
 
-    // implementation "com.intuit.ssp:ssp-android:1.0.6"
+    implementation "com.intuit.ssp:ssp-android:1.0.6"
     implementation "com.google.android.gms:play-services-auth:$firebase_version"
     implementation "com.facebook.android:facebook-login:[4,5)"
 

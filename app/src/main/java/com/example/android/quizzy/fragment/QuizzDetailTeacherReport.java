@@ -150,11 +150,11 @@ public class QuizzDetailTeacherReport extends Fragment implements OnQuizzReportC
                     award.setTeacherUUID(teacherUUID);
                     award.setStudentName(item.studentName);
                     award.setStudentUUID(item.studentUUID);
-                    repo.addAward(award);
-
-                    show(item.studentName);
+                    awards.add(award);
                 }
             }
+            repo.addQuizzAward(teacherUUID, quizzID, awards);
+            show("Awards is sent to Students");
         } else {
             show("No Student Complete a Quiz ");
         }

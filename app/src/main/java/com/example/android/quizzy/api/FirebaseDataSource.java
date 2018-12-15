@@ -9,6 +9,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.List;
+
 /**
  * Created by Mahmoud on 10/22/2018.
  */
@@ -109,5 +111,9 @@ public class FirebaseDataSource {
 
     public DatabaseReference getAwradRef(String teacherUUID) {
         return teacherRef.child(teacherUUID).child(Constants.AWERD_KEY);
+    }
+
+    public void addQuizzAwards(String teacherUUID, String quizzID, List<Award> awards) {
+        teacherRef.child(teacherUUID).child(Constants.AWERD_KEY).child(quizzID).setValue(awards);
     }
 }

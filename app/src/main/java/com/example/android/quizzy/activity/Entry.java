@@ -101,7 +101,6 @@ public class Entry extends AppCompatActivity {
 
     @OnClick(R.id.btnIoenTeacher)
     public void onBtnIoenTeacherClicked() {
-
         String TeacherTelephone = "011";
         name = "MR mabrok";
         Intent intent = new Intent(Entry.this, TeacherHome.class);

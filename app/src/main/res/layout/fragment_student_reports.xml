@@ -35,14 +35,13 @@
 
         <TextView
             android:id="@+id/tvNoDataToShow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/default16_margin"
             android:layout_marginBottom="@dimen/default16_margin"
             android:gravity="center"
             android:text="No Data To Show"
-            android:textColor="@color/white"
             android:textSize="30sp"
             android:visibility="gone" />
 
@@ -53,81 +52,90 @@
             android:layout_marginBottom="@dimen/default16_margin" />
 
         <LinearLayout
+            android:id="@+id/parameterLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default16_margin"
-            android:layout_marginBottom="@dimen/default16_margin">
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/default16_margin"
-                android:layout_weight="1"
-                android:background="@drawable/header_back"
-                android:gravity="center"
-                android:text="Average Value "
-                android:textColor="@color/white" />
+                android:layout_marginTop="@dimen/default16_margin"
+                android:layout_marginBottom="@dimen/default16_margin">
 
-            <TextView
-                android:id="@+id/tvAverageValueStudent"
-                android:layout_width="0dp"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/default16_margin"
+                    android:layout_weight="1"
+                    android:background="@drawable/header_back"
+                    android:gravity="center"
+                    android:text="Average Value "
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/tvAverageValueStudent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/header_back"
+                    android:gravity="center"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/header_back"
-                android:gravity="center"
-                android:textColor="@color/white" />
-        </LinearLayout>
+                android:layout_marginTop="@dimen/default16_margin"
+                android:layout_marginBottom="@dimen/default16_margin">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default16_margin"
-            android:layout_marginBottom="@dimen/default16_margin">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/default16_margin"
+                    android:layout_weight="1"
+                    android:background="@drawable/header_back"
+                    android:gravity="center"
+                    android:text="Max Grade "
+                    android:textColor="@color/white" />
 
-            <TextView
-                android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/tvmaxValueStudent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/header_back"
+                    android:gravity="center"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/default16_margin"
-                android:layout_weight="1"
-                android:background="@drawable/header_back"
-                android:gravity="center"
-                android:text="Max Grade "
-                android:textColor="@color/white" />
+                android:layout_marginTop="@dimen/default16_margin"
+                android:layout_marginBottom="@dimen/default16_margin">
 
-            <TextView
-                android:id="@+id/tvmaxValueStudent"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/header_back"
-                android:gravity="center"
-                android:textColor="@color/white" />
-        </LinearLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/default16_margin"
+                    android:layout_weight="1"
+                    android:background="@drawable/header_back"
+                    android:gravity="center"
+                    android:text="Min Grade"
+                    android:textColor="@color/white" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default16_margin"
-            android:layout_marginBottom="@dimen/default16_margin">
+                <TextView
+                    android:id="@+id/tvminValueStudent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/header_back"
+                    android:gravity="center"
+                    android:textColor="@color/white" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/default16_margin"
-                android:layout_weight="1"
-                android:background="@drawable/header_back"
-                android:gravity="center"
-                android:text="Min Grade"
-                android:textColor="@color/white" />
 
-            <TextView
-                android:id="@+id/tvminValueStudent"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/header_back"
-                android:gravity="center"
-                android:textColor="@color/white" />
         </LinearLayout>
 
 
