@@ -80,11 +80,11 @@ Quizzy provides several features including:
 * Student can access and submit any quiz once it is published by his/her teacher.
 * Student can see his grade immediately after submitting the quiz.
 * Student can see report on his performance in all quizzes.
-* App rewards (and publish) students with high marks in each quiz as a motivation for students to do their best.
+* App rewards (and publish) students with high marks in each quiz as a motivation for students to do their best
 
 ## Screenshots
 * Walkthrough
-<img src="Quizzy_app/20181215_163439.gif"/> 
+!(Walkthrough GIF)[https://github.com/MahmoudMabrok/Quizzy_app/blob/master/20181215_163439.gif]
 * Login/Register
 * Teacher Home
 * Student Home
