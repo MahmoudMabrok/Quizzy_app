@@ -83,7 +83,7 @@ Quizzy provides several features including:
 * App rewards (and publish) students with high marks in each quiz as a motivation for students to do their best
 
 ## Screenshots
-* Walkthrough
+* Walkthrough<br />
 ![Walkthrough GIF](https://github.com/MahmoudMabrok/Quizzy_app/blob/master/20181215_163439.gif)
 * Login/Register
 * Teacher Home
