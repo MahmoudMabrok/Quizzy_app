@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             if (sharedPref.contains(Constants.TELEPHONE_NUMBER_KEY)) { //teacher logged before
                 Log.d(TAG, "shared pref contains telephone number key")
                 gotTeacherNumber = sharedPref.getString(Constants.TELEPHONE_NUMBER_KEY, null)
-                gotTeacherName = sharedPref.getString(Constants.Teacher_NAME, null)
+                gotTeacherName = sharedPref.getString(Constants.TEACHER_NAME, null)
                 //Navigate to Teacher activity
                 moveToTeacherActivity(gotTeacherNumber, gotTeacherName)
             } else if (sharedPref.contains(Constants.TEACHER_TELEPHONE_NUMBER_KEY)) { //student logged before
@@ -52,10 +52,10 @@ class MainActivity : AppCompatActivity() {
                     Log.d(TAG, "got telephone number")
                     //isTeacher = true
                     gotTeacherNumber = intent.extras[Constants.TELEPHONE_NUMBER_KEY] as String
-                    gotTeacherName = intent.extras[Constants.Teacher_NAME] as String
+                    gotTeacherName = intent.extras[Constants.TEACHER_NAME] as String
                     //store at shared preferences
                     getPreferences(Context.MODE_PRIVATE).edit().putString(Constants.TELEPHONE_NUMBER_KEY, gotTeacherNumber).apply()
-                    getPreferences(Context.MODE_PRIVATE).edit().putString(Constants.Teacher_NAME, gotTeacherNumber).apply()
+                    getPreferences(Context.MODE_PRIVATE).edit().putString(Constants.TEACHER_NAME, gotTeacherNumber).apply()
                     //Navigate to Teacher activity
                     moveToTeacherActivity(gotTeacherNumber, gotTeacherName)
                 }
@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
     private fun moveToTeacherActivity(telephoneNumber: String, name: String) {
         val intent = Intent(this, TeacherHome::class.java)
         intent.putExtra(Constants.TELEPHONE_NUMBER_KEY, telephoneNumber)
-        intent.putExtra(Constants.Teacher_NAME, name)
+        intent.putExtra(Constants.TEACHER_NAME, name)
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
     }

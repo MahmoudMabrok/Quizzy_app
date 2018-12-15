@@ -76,7 +76,7 @@ public class TeacherHome extends AppCompatActivity
         ButterKnife.bind(this);
         key = getIntent().getStringExtra(Constants.TELEPHONE_NUMBER_KEY);
         try {
-            name = getIntent().getStringExtra(Constants.Teacher_NAME);
+            name = getIntent().getStringExtra(Constants.TEACHER_NAME);
         } catch (Exception e) {
             name = "011";
         }
