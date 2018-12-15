@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         if (FirebaseAuth.getInstance().currentUser == null) {
             Log.d(TAG, "there is no firebase user")
             val intent = Intent(applicationContext, WalkThroughActivty::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         } else {
             Log.d(TAG, "there is firebase user")
@@ -78,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, TeacherHome::class.java)
         intent.putExtra(Constants.TELEPHONE_NUMBER_KEY, telephoneNumber)
         intent.putExtra(Constants.Teacher_NAME, name)
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
     }
 
@@ -86,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, StudentActivity::class.java)
         intent.putExtra(Constants.TEACHER_TELEPHONE_NUMBER_KEY, teacherTelephoneNumber)
         intent.putExtra(Constants.STUDENT_NAME_KEY, studentName)
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
     }
 }

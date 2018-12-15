@@ -62,7 +62,7 @@ public class StudentActivity extends AppCompatActivity
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         //// TODO: 12/14/2018 integrate with Auth  
-        //       checkLoginState(); // used to check state of curent user
+        checkLoginState(); // used to check state of curent user
         try {
             studentID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         } catch (Exception e) {
