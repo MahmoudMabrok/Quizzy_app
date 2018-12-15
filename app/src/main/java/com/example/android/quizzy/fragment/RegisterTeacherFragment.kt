@@ -84,7 +84,6 @@ class RegisterTeacherFragment : Fragment() {
             else {
                 //Register normally
                 Log.d(TAG, "got e-mail and password from register fragment")
-
                 disposable = loginViewModel.register(userInputs).subscribe({
                     successfulRegister(userInputs)
                 }, {
@@ -110,6 +109,7 @@ class RegisterTeacherFragment : Fragment() {
         //Open Main Acivity and attach teacher's telephone number
         val intent = Intent(activity, MainActivity::class.java)
         intent.putExtra(Constants.TELEPHONE_NUMBER_KEY, userInputs[Constants.TELEPHONE_NUMBER_KEY] as String)
+        intent.putExtra(Constants.Teacher_NAME, userInputs[Constants.Teacher_NAME] as String)
         startActivity(intent)
     }
 

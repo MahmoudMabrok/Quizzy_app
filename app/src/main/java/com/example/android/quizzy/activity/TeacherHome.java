@@ -75,7 +75,11 @@ public class TeacherHome extends AppCompatActivity
         setContentView(R.layout.activity_teacher_home);
         ButterKnife.bind(this);
         key = getIntent().getStringExtra(Constants.TELEPHONE_NUMBER_KEY);
-        name = getIntent().getStringExtra(Constants.Teacher_NAME);
+        try {
+            name = getIntent().getStringExtra(Constants.Teacher_NAME);
+        } catch (Exception e) {
+            name = "011";
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
