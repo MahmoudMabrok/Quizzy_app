@@ -87,6 +87,7 @@ Quizzy provides several features including:
 ## Screenshots
 * Walkthrough<br />
 ![Walkthrough GIF](https://github.com/MahmoudMabrok/Quizzy_app/blob/master/20181215_163439.gif)
+![ScreenShot 1](https://github.com/MahmoudMabrok/Quizzy_app/blob/master/Screenshots/Screenshot_20181215-223541.png)
 * Login/Register
 * Teacher Home
 * Student Home
