@@ -39,23 +39,20 @@ public class QuizzQuestion extends AppCompatActivity {
     private static final String TAG = "QuizzQuestion";
     @BindView(R.id.rvQuizzQuestionList)
     RecyclerView rvQuizzQuestionList;
-    DataRepo repo;
-    Quiz quiz;
     @BindView(R.id.quizzSubmit)
     Button quizzSubmit;
     @BindView(R.id.timeQuiz)
     TextView timeQuiz;
-    private QuestionQuizAdapter adapter;
 
-    //add name to message
     private String successString = "Congratulations \nKeep Going";
     private String failString = "OOOH Sorry  \nStudy More Next Time";
-
+    DataRepo repo = new DataRepo();
+    Quiz quiz;
+    private QuestionQuizAdapter adapter;
     String sID;
     String quizeID;
     String teacher;
     String studentName;
-
     CountDownTimer countTimer;
 
     @Override
@@ -63,39 +60,24 @@ public class QuizzQuestion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizz_question);
         ButterKnife.bind(this);
+        getDataFromIntent();
+        initRv();
+    }
 
+    private void getDataFromIntent() {
         sID = getIntent().getStringExtra(Constants.STUDENT_UUID);
         quizeID = getIntent().getStringExtra(Constants.Quizz_id);
         teacher = getIntent().getStringExtra(Constants.STUDENT_Teacher_uuid);
         studentName = getIntent().getStringExtra(Constants.STUDENT_NAME);
 
-        Log.d(TAG, "onCreate: Student name " + studentName);
-        initRv();
-        repo = new DataRepo();
-
-        if (!getIntent().getBooleanExtra("s", false)) { //case of new quizz (non-solved quizz)
-            repo.getSpecificQuizRef(teacher, quizeID).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    Log.d(TAG, "LLL " + dataSnapshot);
-                    quiz = dataSnapshot.getValue(Quiz.class);
-                    setQuestionList(quiz.getQuestionList());
-                    setTimer(quiz.getHour(), quiz.getMinute());
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-        } else {
+        if (getIntent().getBooleanExtra(Constants.COMPLETED_Sate, false)) { //case of Solved  quizz
             repo.getStudentCompletedQuizz(teacher, sID, quizeID).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     quiz = dataSnapshot.getValue(Quiz.class);
-                    Log.d(TAG, "onDataChange: " + dataSnapshot);
-                    adapter.setList(quiz.getQuestionList());
+                    if (quiz != null) {
+                        adapter.setList(quiz.getQuestionList());
+                    }
                 }
 
                 @Override
@@ -104,8 +86,24 @@ public class QuizzQuestion extends AppCompatActivity {
                 }
             });
             quizzSubmit.setVisibility(View.GONE);
-        }
+        } else { //case of non-Solved  quizz
+            repo.getSpecificQuizRef(teacher, quizeID).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    Log.d(TAG, "onDataChange " + dataSnapshot);
+                    quiz = dataSnapshot.getValue(Quiz.class);
+                    if (quiz != null) {
+                        setQuestionList(quiz.getQuestionList());
+                        setTimer(quiz.getHour(), quiz.getMinute());
+                    }
+                }
 
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
     }
 
     private void setTimer(int hour, int minute) {
@@ -134,16 +132,12 @@ public class QuizzQuestion extends AppCompatActivity {
         adapter.setList(questionList);
     }
 
-
     private void initRv() {
         adapter = new QuestionQuizAdapter(this);
         rvQuizzQuestionList.setAdapter(adapter);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         rvQuizzQuestionList.setLayoutManager(manager);
-
-
     }
-
 
     @OnClick(R.id.quizzSubmit)
     public void onViewClicked() {
@@ -160,7 +154,7 @@ public class QuizzQuestion extends AppCompatActivity {
         List<Question> questionList = adapter.getList();
         float score = 0;
         for (Question question : questionList) {
-            if (question.getStudentAnswer() != null ) {
+            if (question.getStudentAnswer() != null) {
                 if (question.getStudentAnswer().equals(question.getCorrectAnswer())) {
                     question.setState(true);
                     score++;
@@ -212,7 +206,7 @@ public class QuizzQuestion extends AppCompatActivity {
         repo.addQuizTOCompleteList(quiz, sID);
         repo.addAttemted(attemptedQuiz, quizeID, teacher);
         show("Quizz Solved ");
-        new CountDownTimer(2000, 1000) {
+        new CountDownTimer(1500, 1900) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -236,11 +230,10 @@ public class QuizzQuestion extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-  //      super.onBackPressed();
         if (countTimer != null) {
             onViewClicked();
-        }else{
-           finishActvityWithAnim();
+        } else {
+            finishActvityWithAnim();
         }
     }
 }

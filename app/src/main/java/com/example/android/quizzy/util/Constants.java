@@ -61,4 +61,5 @@ public interface Constants {
 
     public static final String NO_ACCOUNT = "No account found";
     String AWERD_KEY = "Awards";
+    String COMPLETED_Sate = "sate";
 }

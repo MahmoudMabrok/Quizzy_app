@@ -171,7 +171,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/button"
-            android:text="Calculate Best Performers" />
+            android:text="Sent Award To Top Student" />
 
 
     </LinearLayout>

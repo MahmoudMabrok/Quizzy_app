@@ -18,7 +18,8 @@
             android:gravity="center"
             android:layout_height="wrap_content"
             android:text="Quizz Name"
-            android:textSize="22sp"
+            android:textSize="@dimen/_22ssp"
+            
             android:layout_marginRight="@dimen/margine_right_item" />
 
         <TextView
@@ -28,7 +29,7 @@
             android:gravity="center"
             android:textColor="#ff0000"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
+            android:textSize="@dimen/_22ssp"
             android:layout_marginRight="@dimen/margine_right_item"
             android:layout_marginEnd="@dimen/margine_right_item" />
 
@@ -40,7 +41,7 @@
             android:textColor="#00ff00"
             android:layout_height="wrap_content"
             android:text="N.Success"
-            android:textSize="22sp"
+            android:textSize="@dimen/_22ssp"
             android:layout_marginRight="@dimen/margine_right_item"
             android:layout_marginEnd="@dimen/margine_right_item" />
 
@@ -51,7 +52,7 @@
             android:gravity="center"
             android:layout_height="wrap_content"
             android:text="N.NA"
-            android:textSize="22sp" />
+            android:textSize="@dimen/_22ssp" />
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

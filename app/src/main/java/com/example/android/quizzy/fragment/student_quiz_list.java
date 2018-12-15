@@ -51,7 +51,6 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
     RecyclerView rvStudentDoneQuizz;
     @BindView(R.id.spin_kit_student_to_do)
     SpinKitView spinKitStudentToDo;
-
     @BindView(R.id.rv_Student_to_do_Quizz)
     RecyclerView rvStudentToDoQuizz;
     @BindView(R.id.tvNoQuizzCompleted)
@@ -64,7 +63,6 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
     LinearLayout QuizzCompletedLayout;
     @BindView(R.id.tv_no_data)
     TextView tvNoData;
-
 
     private List<Quiz> completedList = new ArrayList<>();
     private List<Quiz> quizList = new ArrayList<>();
@@ -89,7 +87,6 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
         }
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -102,13 +99,16 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
         return view;
     }
 
+    /**
+     * load state
+     * hide recycler  , text
+     * show Spin
+     */
     private void loadState() {
         showRv(View.GONE);
         setSpin(View.VISIBLE);
         controlTVNoData(View.GONE);
-
         controlDetails1(View.GONE);
-
     }
 
     private void controlDetails1(int gone) {
@@ -161,8 +161,10 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
     }
 
     /**
-     * @param quiz
-     * @return
+     * check if this quiz is in Complete list or not
+     * by check key of it with Keys alreedy in Completed List
+     * @param quiz quiz to be checked
+     * @return true if it in complete , false otherwise
      */
     private boolean chechIfItInCompleteList(Quiz quiz) {
         for (Quiz q : completedList) {
@@ -172,7 +174,6 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
         }
         return false;
     }
-
 
     private void notFounddataState() {
         rvStudentToDoQuizz.setVisibility(View.GONE);
@@ -229,7 +230,6 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
     private void loadedStateComplete() {
         rvStudentDoneQuizz.setVisibility(View.VISIBLE);
         tvNoQuizzCompleted.setVisibility(View.GONE);
-
         controlDetails1(View.VISIBLE);
     }
 
@@ -265,8 +265,9 @@ public class student_quiz_list extends Fragment implements OnQuizzClick {
         Intent intent = new Intent(getContext(), QuizzQuestion.class);
         intent.putExtra(Constants.STUDENT_UUID, studentUUID);
         intent.putExtra(Constants.Quizz_id, quiz.getKey());
+        //// TODO: 12/14/2018 add a new check
         if (quiz.getQuestionList().get(0).getStudentAnswer() != null) {
-            intent.putExtra("s", true);
+            intent.putExtra(Constants.COMPLETED_Sate, true);
         }
         intent.putExtra(Constants.STUDENT_NAME, studentName);
         intent.putExtra(Constants.STUDENT_Teacher_uuid, teacherID);

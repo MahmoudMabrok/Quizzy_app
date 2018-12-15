@@ -44,7 +44,8 @@ public class TeacherHome extends AppCompatActivity
     FragmentTransaction transition;
 
     public Data dataSendedToQuizDetail;
-    public String name = "AAA";
+    public String name;
+    private String key;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -55,12 +56,7 @@ public class TeacherHome extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_sign_out_teacher) {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(this, "sign out", Toast.LENGTH_LONG).show();
@@ -78,43 +74,40 @@ public class TeacherHome extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_home);
         ButterKnife.bind(this);
-
         key = getIntent().getStringExtra(Constants.TELEPHONE_NUMBER_KEY);
-
+        try {
+            name = getIntent().getStringExtra(Constants.Teacher_NAME);
+        } catch (Exception e) {
+            name = "011";
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         openQuizzListFragment();
-
         TextView textView = navigationView.getHeaderView(0).findViewById(R.id.nav_user_name);
-        textView.setText(key);
-
+        textView.setText(name);
     }
 
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        } else if (getFragmentManager().getBackStackEntryCount() > 0)
-            getFragmentManager().popBackStack();
+        } else if (getSupportFragmentManager().getBackStackEntryCount() > 0)
+            getSupportFragmentManager().popBackStack();
         else {
             super.onBackPressed();
         }
-        show("" + getFragmentManager().getBackStackEntryCount());
+
     }
 
     private void show(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
-
-    private String key = "0114919427";
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -135,7 +128,6 @@ public class TeacherHome extends AppCompatActivity
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
     private void openQuizzListFragment() {
         transition = manager.beginTransaction();
@@ -179,7 +171,6 @@ public class TeacherHome extends AppCompatActivity
         transition.addToBackStack(null);
 
     }
-
 
     private void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);

@@ -62,16 +62,14 @@ public class StudentActivity extends AppCompatActivity
         setContentView(R.layout.activity_student);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-
- //       checkLoginState(); // used to check state of curent user
-      //  studentID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-     //   show(studentID);
-      //  studentID = "9lHyq4mnSaTd1cURH5v5jGm52Mw1";
+        //// TODO: 12/14/2018 integrate with Auth  
+        //       checkLoginState(); // used to check state of curent user
+        //  studentID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         studentID = "EHefJOONtBO6fU6GVHVpAjHnoa92";
-       // Log.d(TAG, "onCreate: " + studentID);
         Intent intent = getIntent();
         studentName = intent.getStringExtra(Constants.STUDENT_NAME_KEY);
         teacherUUID = intent.getStringExtra(Constants.TEACHER_TELEPHONE_NUMBER_KEY);
+
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -93,46 +91,35 @@ public class StudentActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.student, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             FirebaseAuth.getInstance().signOut();
             getPreferences(MODE_PRIVATE).edit().clear().apply();
             openMainActivity();
         }
-
         return super.onOptionsItemSelected(item);
     }
-
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_quiz:
                 openQuizzListFragment();
                 break;
-
             case R.id.nav_reorts:
                 openReports();
                 break;
             case R.id.nav_award:
                 openAward();
                 break;
-
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -149,9 +136,7 @@ public class StudentActivity extends AppCompatActivity
         bundle.putString(Constants.STUDENT_Teacher_uuid, teacherUUID);
         teacher.setArguments(bundle);
         transition.replace(R.id.containerStudent, teacher).commit();
-        //  transition.addToBackStack(student_quiz_list.TAG);
     }
-
 
     private void openAward() {
         transition = manager.beginTransaction();
@@ -175,19 +160,26 @@ public class StudentActivity extends AppCompatActivity
         transition.addToBackStack(StudentReports.TAG);
     }
 
-
     private void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
-
+    /**
+     * show toast messages
+     *
+     * @param studentName
+     */
     private void show(String studentName) {
         Toast.makeText(this, studentName, Toast.LENGTH_SHORT).show();
     }
 
-
+    /**
+     * handle on BackPressed if drawer is open it close it
+     * otherwise it check if BackStack contains fragement if yes it pop it  (return back)
+     * else it back to prev activity
+     */
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -198,11 +190,9 @@ public class StudentActivity extends AppCompatActivity
             } else {
                 super.onBackPressed();
             }
-
             //      super.onBackPressed();
         }
     }
-
 
 
 }

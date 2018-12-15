@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
  * Created by Mahmoud on 10/22/2018.
  */
 public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapter.ViewHolder> {
-
+    private static final String TAG = "QuestionQuizAdapter";
     private List<Question> questionList;
     private Context context;
 
@@ -38,7 +38,6 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
         questionList = new ArrayList<>();
     }
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -46,53 +45,12 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
         return new ViewHolder(view);
     }
 
-    private static final String TAG = "QuestionQuizAdapter";
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         String strNum = "Question " + (position + 1);
         holder.tvQuestionNum.setText(strNum);
         final Question question = questionList.get(position);
         holder.tvQuestionTitle.setText(question.getQuestion());
-        //handle radio group
-/*
-        RadioButton radioButton;
-        List<String> list = question.getAnswerList();
-        int c = 0;
-        for (String s : list) {
-            radioButton = new RadioButton(context);
-            radioButton.setText(s);
-            radioButton.setId(c);
-            radioButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-            radioButton.setPadding(16, 16, 16, 16);
-            holder.radioGroup.addView(radioButton);
-        }
-
-
-        holder.radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == -1) {
-                    show("error ");
-                } else {
-                    String answer = list.get(i);
-                   // question.setStudentAnswer(answer);
-                    question.setSelectedID(i);
-                   // questionList.set(position, question);
-                    show(answer + " i  " + i);
-                    notifyDataSetChanged();
-                }
-            }
-        });
-
-        if (question.getSelectedID() != -1) {
-            show("not " + question.getSelectedID()) ;
-            holder.radioGroup.check(question.getSelectedID());
-        }
-*/
-
-
-        //handle spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(holder.itemView.getContext(), android.R.layout.simple_dropdown_item_1line, question.getAnswerList());
         holder.spAnswerList.setAdapter(adapter);
         holder.spAnswerList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -103,22 +61,16 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
                 question.setStudentAnswer(answer);
                 questionList.set(position, question);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
         holder.spAnswerList.setEnabled(true);
-
-
-        //case solved quizz
         String answer = question.getStudentAnswer();
-        Log.d(TAG, "onBindViewHolder: " + answer);
-        if (answer != null) {
+        if (answer != null) {// case of solved quiz
             int pos = question.getAnswerList().indexOf(answer);
-            Log.d(TAG, "onBindViewHolder:  pos" + pos);
-            //    holder.radioGroup.check(pos);
+            holder.spAnswerList.setEnabled(false);
             holder.spAnswerList.setSelection(pos);
             if (question.getCorrectAnswer().equals(answer)) {
                 holder.stateOK.setVisibility(View.VISIBLE);
@@ -135,12 +87,10 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
         Toast.makeText(context, answer, Toast.LENGTH_SHORT).show();
     }
 
-
     @Override
     public int getItemCount() {
         return questionList.size();
     }
-
 
     public void setList(List<Question> question) {
         questionList = new ArrayList<>(question);
@@ -150,7 +100,6 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
     public List<Question> getList() {
         return questionList;
     }
-
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tvQuestionNum)
@@ -165,7 +114,6 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
         TextView stateOK;
         @BindView(R.id.stateOFF)
         TextView stateOFF;
-
         @BindView(R.id.radioGroup)
         RadioGroup radioGroup;
 
@@ -174,6 +122,4 @@ public class QuestionQuizAdapter extends RecyclerView.Adapter<QuestionQuizAdapte
             ButterKnife.bind(this, view);
         }
     }
-
-
 }

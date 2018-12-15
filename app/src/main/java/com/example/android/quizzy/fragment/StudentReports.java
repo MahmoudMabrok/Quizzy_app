@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +59,8 @@ public class StudentReports extends Fragment {
 
     @BindView(R.id.tvAverageValueStudent)
     TextView tvAverageValueStudent;
+    @BindView(R.id.parameterLayout)
+    LinearLayout parameterLayout;
     private ArrayList<Quiz> completedList = new ArrayList<>();
     private DataRepo dataRepo;
     private ArrayList<Quiz> quizList = new ArrayList<>();
@@ -96,35 +99,8 @@ public class StudentReports extends Fragment {
 
     private void loadState() {
         chartQuizzes.setVisibility(View.GONE);
-        // chartGrades.setVisibility(View.GONE);
+        controlParametLayout(View.GONE);
     }
-
-
-    private void comptueParamter() {
-        int max = 0, min = 0;
-        float avg = 0;
-        ArrayList<Integer> list = new ArrayList<>();
-        for (Quiz quiz : completedList) {
-            list.add(quiz.getPercentage());
-            avg += quiz.getPercentage();
-        }
-        Log.d(TAG, "onDataChange : comptueParamter --  " + list.size());
-        if (list.size() > 0) {
-            max = Collections.max(list);
-            Log.d(TAG, "comptueParamter:  max " + max);
-            min = Collections.min(list);
-            avg = (float) (avg / list.size() * 1.0);
-        }
-
-        if (tvAverageValueStudent != null) {
-            Log.d(TAG, "onDataChange  :: comptueParamter: " + "not null ");
-            tvAverageValueStudent.setText(avg + " %");
-            tvmaxValueStudent.setText(max + " %");
-            tvminValueStudent.setText(min + " %");
-        }
-
-    }
-
 
     private void retriveQuizzList(String teacherID) {
         //region fetch data
@@ -196,61 +172,6 @@ public class StudentReports extends Fragment {
         });
     }
 
-    private void loadedState() {
-        chartQuizzes.setVisibility(View.VISIBLE);
-        tvNoDataToShow.setVisibility(View.GONE);
-    }
-
-    private void noDataState() {
-        chartQuizzes.setVisibility(View.GONE);
-        tvNoDataToShow.setVisibility(View.VISIBLE);
-    }
-
-    /**
-     * represnt States of quizzes {"Success", "Failed", "Not Attemped"}
-     */
-    private void computeDistributionGrades() {
-        show("A");
-        String[] labels = new String[]{"Success", "Failed", "Not Attemped"};
-        int success = 0, falid = 0, na;
-        for (Quiz quiz : completedList) {
-            if (quiz.getGrade() > Constants.FAILED)
-                success++;
-            else
-                falid++;
-        }
-        Log.d(TAG, "computeDistributionGrades: " + completedList.size());
-        na = quizList.size() - (success + falid);
-        int[] values = new int[]{success, falid, na};
-        Cartesian cartesian = AnyChart.column();
-        List<DataEntry> data = new ArrayList<>();
-        for (int i = 0; i < values.length; i++) {
-            data.add(new ValueDataEntry(labels[i], values[i]));
-        }
-
-        Column column = cartesian.column(data);
-        column.tooltip()
-                .titleFormat("{%X}")
-                .position(Position.CENTER_BOTTOM)
-                .anchor(Anchor.CENTER_BOTTOM)
-                .offsetX(0d)
-                .offsetY(5d)
-                .format("{%Value}{groupsSeparator: }");
-        cartesian.animation(true);
-        cartesian.title("Quizz Grades");
-        cartesian.yScale().minimum(0d);
-        cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }");
-        cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
-        cartesian.interactivity().hoverMode(HoverMode.BY_X);
-        cartesian.xAxis(0).title("Grade Frequents");
-        cartesian.yAxis(0).title("Count");
-        // chartGrades.setChart(cartesian);
-    }
-
-    private void show(String m) {
-        Toast.makeText(getContext(), m, Toast.LENGTH_SHORT).show();
-    }
-
     /**
      * represent all Quizzes State
      */
@@ -279,6 +200,51 @@ public class StudentReports extends Fragment {
         cartesian.yAxis(0).title("% (max is 100 )");
         chartQuizzes.setChart(cartesian);
 
+    }
+
+    private void comptueParamter() {
+        int max = 0, min = 0;
+        float avg = 0;
+        ArrayList<Integer> list = new ArrayList<>();
+        for (Quiz quiz : completedList) {
+            list.add(quiz.getPercentage());
+            avg += quiz.getPercentage();
+        }
+        Log.d(TAG, "onDataChange : comptueParamter --  " + list.size());
+        if (list.size() > 0) {
+            max = Collections.max(list);
+            Log.d(TAG, "comptueParamter:  max " + max);
+            min = Collections.min(list);
+            avg = (float) (avg / list.size() * 1.0);
+        }
+
+        if (tvAverageValueStudent != null) {
+            Log.d(TAG, "onDataChange  :: comptueParamter: " + "not null ");
+            tvAverageValueStudent.setText((int) avg + " %");
+            tvmaxValueStudent.setText(max + " %");
+            tvminValueStudent.setText(min + " %");
+        }
+
+    }
+
+    private void loadedState() {
+        chartQuizzes.setVisibility(View.VISIBLE);
+        tvNoDataToShow.setVisibility(View.GONE);
+        controlParametLayout(View.VISIBLE);
+    }
+
+    private void noDataState() {
+        chartQuizzes.setVisibility(View.GONE);
+        tvNoDataToShow.setVisibility(View.VISIBLE);
+        controlParametLayout(View.GONE);
+    }
+
+    private void controlParametLayout(int gone) {
+        parameterLayout.setVisibility(gone);
+    }
+
+    private void show(String m) {
+        Toast.makeText(getContext(), m, Toast.LENGTH_SHORT).show();
     }
 
     @Override

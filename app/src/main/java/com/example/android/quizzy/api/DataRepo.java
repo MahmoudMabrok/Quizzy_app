@@ -6,6 +6,8 @@ import com.example.android.quizzy.model.NotifactionItem;
 import com.example.android.quizzy.model.Quiz;
 import com.google.firebase.database.DatabaseReference;
 
+import java.util.List;
+
 /**
  * Created by Mahmoud on 10/22/2018.
  */
@@ -73,5 +75,9 @@ public class DataRepo {
 
     public DatabaseReference getAwradRef(String teacherUUID) {
         return firebaseDataSource.getAwradRef(teacherUUID);
+    }
+
+    public void addQuizzAward(String teacherUUID, String quizzID, List<Award> awards) {
+        firebaseDataSource.addQuizzAwards(teacherUUID, quizzID, awards);
     }
 }
