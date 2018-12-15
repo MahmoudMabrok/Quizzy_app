@@ -2,14 +2,14 @@
 Quizzy is an android application that aims to provide the teacher with a tool to evaluate his students.
 
 ## Table of Contents
-* Synopsis
-* Recognition of Need
-* Related work
-* Our Solution
-* Inspiration
-* Technologies
-* Features
-* Screenshots
+* [Synopsis](#Synopsis)
+* [Recognition of Need](#Recognition-of-Need)
+* [Related work](#Related-work)
+* [Our Solution](#Our-Solution)
+* [Inspiration](#Inspiration)
+* [Technologies](#Technologies)
+* [Features](#Features)
+* [Screenshots](#Screenshots)
 
 ## Synopsis
 Software engineering is not only coding. In fact it is understanding society problems, gathering requirements, Designing solutions and lastly coding shows up as a single stage in the entire process. And to be able to find a problem and innovate a solution for it you must have a deep understanding of the problem itself and the community in which the problem appears as well. Based on that, we have decided to solve one of the problems in our educational system in Egypt in particular and in most developing countries in general because it is the system that we understand most as we are involved in it and suffer from its problems.
