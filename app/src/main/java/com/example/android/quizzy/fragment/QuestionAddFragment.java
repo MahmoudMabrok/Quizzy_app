@@ -178,15 +178,4 @@ public class QuestionAddFragment extends Fragment {
         answerList.clear();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        show("pause");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        show("stop");
-    }
 }

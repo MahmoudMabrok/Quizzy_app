@@ -58,7 +58,6 @@ public interface Constants {
     String Teacher_NAME = "teacherName";
 
     public static final int RC_SIGN_IN = 1;
-
     public static final String NO_ACCOUNT = "No account found";
     String AWERD_KEY = "Awards";
     String COMPLETED_Sate = "sate";

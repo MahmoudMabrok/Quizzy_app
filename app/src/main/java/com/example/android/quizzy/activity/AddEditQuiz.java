@@ -75,13 +75,10 @@ public class AddEditQuiz extends AppCompatActivity implements onQuestionAdd, Tim
     private FragmentManager manager = getSupportFragmentManager();
     private FragmentTransaction transaction;
     private QuestionListAdapterAddQuiz adapter;
-
     private String teacherKey;
     private DataRepo dataRepo;
-
     private String quizzKey;
     private boolean isUpdate;
-
     private int hours, minuts;
     Animation animationDown;
     Animation animationUP;
@@ -307,7 +304,7 @@ public class AddEditQuiz extends AppCompatActivity implements onQuestionAdd, Tim
 
     @Override
     public void onBackPressed() {
-        if (getFragmentManager().getBackStackEntryCount() > 0) {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
             setViewAfterAddQuestion();
         } else {
             super.onBackPressed();

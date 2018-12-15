@@ -30,7 +30,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
-import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,7 +53,7 @@ public class StudentActivity extends AppCompatActivity
     public String studentName;
     public String teacherUUID;
 
-    private static final String TAG = "StudentActivity";
+    public static final String TAG = "StudentActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +63,11 @@ public class StudentActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         //// TODO: 12/14/2018 integrate with Auth  
         //       checkLoginState(); // used to check state of curent user
-        //  studentID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        studentID = "EHefJOONtBO6fU6GVHVpAjHnoa92";
+        try {
+            studentID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        } catch (Exception e) {
+            studentID = "EHefJOONtBO6fU6GVHVpAjHnoa92";
+        }
         Intent intent = getIntent();
         studentName = intent.getStringExtra(Constants.STUDENT_NAME_KEY);
         teacherUUID = intent.getStringExtra(Constants.TEACHER_TELEPHONE_NUMBER_KEY);
