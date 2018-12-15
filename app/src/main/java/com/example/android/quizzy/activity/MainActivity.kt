@@ -20,12 +20,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //check if user logged or still needs
-        if(FirebaseAuth.getInstance().currentUser == null){
+        if (FirebaseAuth.getInstance().currentUser == null) {
             Log.d(TAG, "there is no firebase user")
             val intent = Intent(applicationContext, WalkThroughActivty::class.java)
             startActivity(intent)
-        }
-        else {
+        } else {
             Log.d(TAG, "there is firebase user")
             var gotTeacherNumber: String?
             var gotTeacherName: String?
@@ -33,23 +32,19 @@ class MainActivity : AppCompatActivity() {
 
             //check if shared preferences has values
             val sharedPref = getPreferences(Context.MODE_PRIVATE)
-            if(sharedPref.contains(Constants.TELEPHONE_NUMBER_KEY)){ //teacher logged before
+            if (sharedPref.contains(Constants.TELEPHONE_NUMBER_KEY)) { //teacher logged before
                 Log.d(TAG, "shared pref contains telephone number key")
                 gotTeacherNumber = sharedPref.getString(Constants.TELEPHONE_NUMBER_KEY, null)
                 gotTeacherName = sharedPref.getString(Constants.Teacher_NAME, null)
                 //Navigate to Teacher activity
                 moveToTeacherActivity(gotTeacherNumber, gotTeacherName)
-            }
-
-            else if(sharedPref.contains(Constants.TEACHER_TELEPHONE_NUMBER_KEY)){ //student logged before
+            } else if (sharedPref.contains(Constants.TEACHER_TELEPHONE_NUMBER_KEY)) { //student logged before
                 Log.d(TAG, "shared pref contains teacher telephone number key")
                 gotTeacherNumber = sharedPref.getString(Constants.TEACHER_TELEPHONE_NUMBER_KEY, null)
                 gotStudentName = sharedPref.getString(Constants.STUDENT_NAME_KEY, null)
                 //Navigate to Student activity
                 moveToStudentActivity(gotTeacherNumber, gotStudentName)
-            }
-
-            else{
+            } else {
                 Log.d(TAG, "there is no shared pref")
                 //Check getting number from login/register
                 if (intent.extras.containsKey(Constants.TELEPHONE_NUMBER_KEY)) { //Teacher logged
@@ -83,13 +78,15 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, TeacherHome::class.java)
         intent.putExtra(Constants.TELEPHONE_NUMBER_KEY, telephoneNumber)
         intent.putExtra(Constants.Teacher_NAME, name)
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
     }
 
-    private fun moveToStudentActivity(teacherTelephoneNumber : String, studentName : String){
+    private fun moveToStudentActivity(teacherTelephoneNumber: String, studentName: String) {
         val intent = Intent(this, StudentActivity::class.java)
         intent.putExtra(Constants.TEACHER_TELEPHONE_NUMBER_KEY, teacherTelephoneNumber)
         intent.putExtra(Constants.STUDENT_NAME_KEY, studentName)
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
     }
 }

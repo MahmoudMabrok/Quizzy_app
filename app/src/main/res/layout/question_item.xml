@@ -25,6 +25,7 @@
             android:layout_width="70dp"
             android:layout_height="50dp"
             android:scaleType="fitXY"
+            android:visibility="gone"
             android:layout_marginRight="@dimen/default16_margin"
             android:src="@drawable/ic_mode_edit_black_24dp" />
 
@@ -32,6 +33,7 @@
             android:id="@+id/ivDelete"
             android:layout_width="70dp"
             android:layout_height="50dp"
+            android:visibility="gone"
             android:scaleType="fitXY"
             android:src="@drawable/ic_delete_black_24dp" />
 
