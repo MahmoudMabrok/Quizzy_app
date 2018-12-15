@@ -60,8 +60,8 @@ public class TeacherHome extends AppCompatActivity
         if (id == R.id.action_sign_out_teacher) {
             FirebaseAuth.getInstance().signOut();
             Toast.makeText(this, "sign out", Toast.LENGTH_LONG).show();
-            getPreferences(MODE_PRIVATE).edit().clear().apply();
-            openMainActivity();
+            getSharedPreferences(Constants.SHARED_PREFERENCES, MODE_PRIVATE).edit().clear().apply();
+            openLoginActivity();
         }
 
         return super.onOptionsItemSelected(item);
@@ -76,7 +76,7 @@ public class TeacherHome extends AppCompatActivity
         ButterKnife.bind(this);
         key = getIntent().getStringExtra(Constants.TELEPHONE_NUMBER_KEY);
         try {
-            name = getIntent().getStringExtra(Constants.Teacher_NAME);
+            name = getIntent().getStringExtra(Constants.TEACHER_NAME);
         } catch (Exception e) {
             name = "011";
         }
@@ -172,9 +172,9 @@ public class TeacherHome extends AppCompatActivity
 
     }
 
-    private void openMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    private void openLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 

@@ -1,27 +1,35 @@
 {
   "project_info": {
-    "project_number": "92966847595",
-    "firebase_url": "https://quizzy-b19ef.firebaseio.com",
-    "project_id": "quizzy-b19ef",
-    "storage_bucket": "quizzy-b19ef.appspot.com"
+    "project_number": "74520430768",
+    "firebase_url": "https://quizzy-50e30.firebaseio.com",
+    "project_id": "quizzy-50e30",
+    "storage_bucket": "quizzy-50e30.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:92966847595:android:d6887ec7a04bd52e",
+        "mobilesdk_app_id": "1:74520430768:android:d6887ec7a04bd52e",
         "android_client_info": {
           "package_name": "com.example.android.quizzy"
         }
       },
       "oauth_client": [
         {
-          "client_id": "92966847595-pqrd42d5kn0rlqg3is476rnl87ge6dh1.apps.googleusercontent.com",
+          "client_id": "74520430768-ms8foiakecomgatvlgv9d9ngul7f315l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.quizzy",
+            "certificate_hash": "4baf534d883d0aba8ce0379cd5d9422c7ef2d8cc"
+          }
+        },
+        {
+          "client_id": "74520430768-h3ccm53d0iceqa4p9126k2550pmh89is.apps.googleusercontent.com",
           "client_type": 3
         }
-            ],
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyCGY0AX-N50XYe85l2s0d9ehj-bk0n3z8g"
+          "current_key": "AIzaSyAV9BVbxSsR-G5fQ-uzcqCtFT9Lr38EW6w"
         }
       ],
       "services": {
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "74520430768-h3ccm53d0iceqa4p9126k2550pmh89is.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
@@ -40,17 +53,3 @@
   ],
   "configuration_version": "1"
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

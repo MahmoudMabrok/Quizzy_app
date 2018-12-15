@@ -140,7 +140,7 @@ class LoginFragment : Fragment() {
         if (it is Teacher) {
             Log.d(TAG, "Got teacher with number : " + it.telephoneNumber)
             intent.putExtra(Constants.TELEPHONE_NUMBER_KEY, it.telephoneNumber)
-            intent.putExtra(Constants.Teacher_NAME, it.firstName + " " + it.lastName)
+            intent.putExtra(Constants.TEACHER_NAME, it.firstName + " " + it.lastName)
         } else if (it is Student) {
             Log.d(TAG, "Got student with teacher's number : " + it.teacherTelephoneNumber)
             intent.putExtra(Constants.TEACHER_TELEPHONE_NUMBER_KEY, it.teacherTelephoneNumber)

@@ -105,7 +105,7 @@ public class Entry extends AppCompatActivity {
         name = "MR mabrok";
         Intent intent = new Intent(Entry.this, TeacherHome.class);
         intent.putExtra(Constants.TELEPHONE_NUMBER_KEY, TeacherTelephone);
-        intent.putExtra(Constants.Teacher_NAME, name);
+        intent.putExtra(Constants.TEACHER_NAME, name);
         startActivity(intent);
 
 /*

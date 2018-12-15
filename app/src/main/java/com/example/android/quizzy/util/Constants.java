@@ -55,10 +55,12 @@ public interface Constants {
     String STUDENT_UUID = "student_uuid";
     String STUDENT_Teacher_uuid = "teacher_uuid";
     String Quizz_id = "id";
-    String Teacher_NAME = "teacherName";
+    String TEACHER_NAME = "teacherName";
+
+    String SHARED_PREFERENCES = "shared_pref";
 
     public static final int RC_SIGN_IN = 1;
-    public static final String NO_ACCOUNT = "No account found";
+    String NO_ACCOUNT = "No account found";
     String AWERD_KEY = "Awards";
     String COMPLETED_Sate = "sate";
 }

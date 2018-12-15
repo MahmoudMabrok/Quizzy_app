@@ -239,6 +239,7 @@ class RegisterFragment : Fragment() {
         if (user is Teacher) {
             Log.d(TAG, "Got teacher with number : " + user.telephoneNumber)
             intent.putExtra(Constants.TELEPHONE_NUMBER_KEY, user.telephoneNumber)
+            intent.putExtra(Constants.TEACHER_NAME, user.firstName + " " + user.lastName)
         } else if (user is Student) {
             Log.d(TAG, "Got student with teacher's number : " + user.teacherTelephoneNumber)
             intent.putExtra(Constants.TEACHER_TELEPHONE_NUMBER_KEY, user.teacherTelephoneNumber)
