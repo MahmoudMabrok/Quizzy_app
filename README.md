@@ -101,4 +101,4 @@ Quizzy provides several features including:
 
 ## Video 
 * Explanation <br />
-![intro](https://youtu.be/mZVigv-Taz0)
+(https://youtu.be/mZVigv-Taz0)
