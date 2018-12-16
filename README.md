@@ -12,6 +12,8 @@ Quizzy is an android application that aims to provide the teacher with a tool to
 * [Technologies](#Technologies)
 * [Features](#Features)
 * [Screenshots](#Screenshots)
+* [Video](#Video)
+* [Required Info](#Required-Info)
 
 ## Synopsis
 Software engineering is not only coding. In fact it is understanding society problems, gathering requirements, Designing solutions and lastly coding shows up as a single stage in the entire process. And to be able to recognize society problems and innovate a solution for them you must have a deep understanding of the society in which the problems appear. Based on that, we have decided to solve one of the problems in our educational system in Egypt in particular and in most developing countries in general because it is the system that we understand most as we are involved in it and suffer from its problems.
@@ -102,3 +104,12 @@ Quizzy provides several features including:
 ## Video 
 * Explanation <br />
 (https://youtu.be/mZVigv-Taz0)
+
+## Required Info
+Key | Value
+--- | -----
+App File Name | https://github.com/MahmoudMabrok/Quizzy_app/tree/master/APK 
+Short Description | Quizzy is an android application that aims to provide the teacher with a tool to evaluate his students.
+Licence | Apache 2
+Country | Egypt
+Authors | Mahmoud Mabrouk https://github.com/MahmoudMabrok <br /> Hossam Abdelnaser https://github.com/hossamnasser938
