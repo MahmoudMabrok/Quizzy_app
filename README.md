@@ -98,3 +98,7 @@ Quizzy provides several features including:
 ![ScreenShot 1](https://github.com/MahmoudMabrok/Quizzy_app/blob/master/Screenshots/Screenshot_20181215-223541.png)
 * Reports for Student
 * Rewards
+
+## Video 
+* Explanation <br />
+![intro](https://youtu.be/mZVigv-Taz0)
