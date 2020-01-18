@@ -1,7 +1,7 @@
 # Quizzy
 Quizzy is an android application that aims to provide the teacher with a tool to evaluate his students.
 
-[![License](https://img.shields.io/hexpm/l/plug.svg)](http://doge.mit-license.org)
+[![License](https://img.shields.io/hexpm/l/plug.svg)](http://doge.mit-license.org)[![HitCount](http://hits.dwyl.io/MahmoudMabrok/Quizzy_app.svg)](http://hits.dwyl.io/MahmoudMabrok/Quizzy_app)
 
 ## Table of Contents
 * [Synopsis](#Synopsis)
